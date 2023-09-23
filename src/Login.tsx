@@ -1,5 +1,6 @@
 import { createStyles, Title, Text, Container, Flex, Button } from '@mantine/core';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import WalletConnectButton from './WalletConnectButton';
 import Passkey from './Passkey';
 
 const useStyles = createStyles((theme) => ({
@@ -47,21 +48,26 @@ export function Login() {
           {' '}
           {/* Centered text */}
           <Text component='span' className={classes.highlight} inherit>
-            Fuel Your Financial Freedom.
+            Not an Existing Web3 User?
           </Text>
           <br />
-          Unleash the power of account abstraction
+          Use Unlimit to login!
         </Title>
         <div>
           <ConnectButton label={'Login'} /> {/* Added margin for spacing */}
         </div>
-        <p style={{ textAlign: 'center', maxWidth: '80%', margin: '0 auto' }}>
+        <Title className={classes.title} style={{ textAlign: 'center' }}>
           {' '}
-          {/* Centered and limited width for better readability */}
-          Unleash the power of account abstraction with global on and off ramps that span
-          every inch of the world. Ignite the Future of Money with Seamless Fiat
-          Onboarding and Competitive Stablecoin Rates!
-        </p>
+          {/* Centered text */}
+          <Text component='span' className={classes.highlight} inherit>
+            Already an Existing Web3 User?
+          </Text>
+          <br />
+          Use WalletConnect to Login!
+        </Title>
+        <div>
+          <WalletConnectButton label='Login' /> {/* Added margin for spacing */}
+        </div>
       </Flex>
     </Container>
   );
