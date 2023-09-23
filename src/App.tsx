@@ -1,44 +1,39 @@
-import { Dashboard } from './Dashboard';
+import { Dashboard } from "./Dashboard";
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
-  Navigate
+  Navigate,
 } from "react-router-dom";
-import Onramp from './pages/OnrampPage';
-import SwapPage from './pages/SwapPage';
-import DashboardPage from './pages/DashboardPage'
-// import Experiment from './examples/Experiment';
-
+import Onramp from "./pages/OnrampPage";
+import SwapPage from "./pages/SwapPage";
+import HomePage from "./pages/HomePage";
 
 const links = [
-  { path: '/Dashboard', label: 'Dashboard', element: <DashboardPage /> },
-  { path: '/Onramp', label: 'Onramp', element: <Onramp /> },
-  { path: '/Swap', label: 'Swap', element: <SwapPage /> },
-  { path: '/Inbox', label: 'Inbox', element: <Onramp /> },
-  { path: '/Messages', label: 'Messages', element: <Onramp /> },
-
-  // { path: '/Experiment', label: 'Experiment', element: <Experiment/> },
+  { path: "/home", label: "Home", element: <HomePage /> },
+  { path: "/onramp", label: "Onramp", element: <Onramp /> },
+  { path: "/swap", label: "Swap", element: <SwapPage /> },
+  { path: "/inbox", label: "Inbox", element: <Onramp /> },
+  { path: "/messages", label: "Messages", element: <Onramp /> },
 ];
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Dashboard children={<Outlet />}
-      links={links} />,
-    errorElement: <Navigate to={'/'} replace />,
+    path: "/",
+    element: <Dashboard children={<Outlet />} links={links} />,
+    errorElement: <Navigate to={"/"} replace />,
     children: [
       {
         index: true,
-        element: <Navigate to={links[0].path} replace />
+        element: <Navigate to={links[0].path} replace />,
       },
-      ...links
-    ]
-  }
+      ...links,
+    ],
+  },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
 
 export default App;

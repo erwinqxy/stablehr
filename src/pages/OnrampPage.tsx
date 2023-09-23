@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-useless-concat */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
-import { GateFiDisplayModeEnum, GateFiSDK } from '@gatefi/js-sdk';
-import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import crypto from 'crypto-browserify';
-import { Page } from '../Page';
+import React from "react";
+import { GateFiDisplayModeEnum, GateFiSDK } from "@gatefi/js-sdk";
+import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from "react";
+import crypto from "crypto-browserify";
+import { Page } from "../Page";
 
 const OnrampPage: React.FC = () => {
   const [showIframe, setShowIframe] = useState(false);
@@ -51,21 +51,21 @@ const OnrampPage: React.FC = () => {
         setIsOverlayVisible(true);
       }
     } else {
-      const randomString = crypto.randomBytes(32).toString('hex');
+      const randomString = crypto.randomBytes(32).toString("hex");
       overlayInstanceSDK.current = new GateFiSDK({
-        merchantId: '9e34f479-b43a-4372-8bdf-90689e16cd5b',
+        merchantId: "9e34f479-b43a-4372-8bdf-90689e16cd5b",
         displayMode: GateFiDisplayModeEnum.Overlay,
-        nodeSelector: '#overlay-button',
+        nodeSelector: "#overlay-button",
         isSandbox: true,
-        walletAddress: 'bc1q5z426v3ux753fjm2xwda4gp62f89w0f7uvfrfl',
-        email: 'testoooor@gmail.com',
+        walletAddress: "bc1q5z426v3ux753fjm2xwda4gp62f89w0f7uvfrfl",
+        email: "testoooor@gmail.com",
         externalId: randomString,
         defaultFiat: {
-          currency: 'EUR',
-          amount: '500',
+          currency: "EUR",
+          amount: "500",
         },
         defaultCrypto: {
-          currency: 'BTC',
+          currency: "BTC",
         },
       });
     }
@@ -75,24 +75,24 @@ const OnrampPage: React.FC = () => {
 
   // Function to create a new embed SDK instance
   const createEmbedSdkInstance = () => {
-    const randomString = crypto.randomBytes(32).toString('hex');
+    const randomString = crypto.randomBytes(32).toString("hex");
 
     embedInstanceSDK.current =
-      typeof document !== 'undefined'
+      typeof document !== "undefined"
         ? new GateFiSDK({
-            merchantId: '88fd676b-ea6d-4d99-88cb-110a9fae0264',
+            merchantId: "88fd676b-ea6d-4d99-88cb-110a9fae0264",
             displayMode: GateFiDisplayModeEnum.Embedded,
-            nodeSelector: '#embed-button',
+            nodeSelector: "#embed-button",
             isSandbox: true,
-            walletAddress: '0xD4e1BA82436238187254C4d47dd3395A69B08b1E',
-            email: 'erwin.quek@u.nus.com',
+            walletAddress: "0xD4e1BA82436238187254C4d47dd3395A69B08b1E",
+            email: "erwin.quek@u.nus.com",
             externalId: randomString,
             defaultFiat: {
-              currency: 'USD',
-              amount: '30',
+              currency: "USD",
+              amount: "30",
             },
             defaultCrypto: {
-              currency: 'ETH',
+              currency: "ETH",
             },
           })
         : null;
@@ -100,50 +100,50 @@ const OnrampPage: React.FC = () => {
 
   const handleHostedFlowClick = () => {
     const url =
-      'https://onramp-sandbox.gatefi.com/?merchantId=9e34f479-b43a-4372-8bdf-90689e16cd5b';
-    window.open(url, '_blank');
+      "https://onramp-sandbox.gatefi.com/?merchantId=9e34f479-b43a-4372-8bdf-90689e16cd5b";
+    window.open(url, "_blank");
   };
 
   return (
     <Page
-      title={'Onramp'}
-      description={'Onramp users with our SDK or Hosted Flows'}
-      docs={
-        'https://docs.gatefi.com/docs/gatefi-docs/7p34n1uhrzlg8-hosted-mode-integration'
-      }
+      title={"Onramp"}
+      description={"Onramp users with our SDK or Hosted Flows"}
+      // docs={
+      //   'https://docs.gatefi.com/docs/gatefi-docs/7p34n1uhrzlg8-hosted-mode-integration'
+      // }
     >
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         {/* Buttons with modern styling */}
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '10px',
-            marginTop: '10px',
+            display: "flex",
+            justifyContent: "center",
+            gap: "10px",
+            marginTop: "10px",
           }}
         >
           <button
             onClick={handleOnClickEmbed}
             style={{
-              background: '#2775ca',
-              border: 'none',
-              borderRadius: '5px',
-              padding: '10px 20px',
-              fontSize: '1rem',
-              cursor: 'pointer',
-              transition: '0.3s',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              fontWeight: 'bold',
-              color: 'black',
+              background: "#2775ca",
+              border: "none",
+              borderRadius: "5px",
+              padding: "10px 20px",
+              fontSize: "1rem",
+              cursor: "pointer",
+              transition: "0.3s",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              fontWeight: "bold",
+              color: "black",
             }}
-            onMouseOver={(e) => (e.currentTarget.style.opacity = '0.7')}
-            onMouseOut={(e) => (e.currentTarget.style.opacity = '1')}
+            onMouseOver={e => (e.currentTarget.style.opacity = "0.7")}
+            onMouseOut={e => (e.currentTarget.style.opacity = "1")}
           >
             Get USDC!
           </button>
@@ -151,22 +151,25 @@ const OnrampPage: React.FC = () => {
 
         <div
           style={{
-            position: 'relative',
-            width: '100%',
-            height: '600px',
-            marginTop: '20px',
+            position: "relative",
+            width: "100%",
+            height: "600px",
+            marginTop: "20px",
             // padding: showIframe ? "20px" : "0",
-            boxSizing: 'border-box',
-            overflow: 'auto',
+            boxSizing: "border-box",
+            overflow: "auto",
           }}
         >
           <div
-            id='embed-button'
-            style={{ width: '100%', height: showIframe ? 'calc(100% - 40px)' : '100%' }}
+            id="embed-button"
+            style={{
+              width: "100%",
+              height: showIframe ? "calc(100% - 40px)" : "100%",
+            }}
           ></div>
         </div>
 
-        <div id='overlay-button'></div>
+        <div id="overlay-button"></div>
       </div>
     </Page>
   );
