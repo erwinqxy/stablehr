@@ -7,11 +7,12 @@ import {
 } from "react-router-dom";
 import Onramp from './pages/OnrampPage';
 import SwapPage from './pages/SwapPage';
+import DashboardPage from './pages/DashboardPage'
 // import Experiment from './examples/Experiment';
 
 
 const links = [
-  { path: '/Dashboard', label: 'Dashboard', element: <Onramp /> },
+  { path: '/Dashboard', label: 'Dashboard', element: <DashboardPage /> },
   { path: '/Onramp', label: 'Onramp', element: <Onramp /> },
   { path: '/Swap', label: 'Swap', element: <SwapPage /> },
   { path: '/Inbox', label: 'Inbox', element: <Onramp /> },
