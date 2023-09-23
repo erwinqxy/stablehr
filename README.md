@@ -11,7 +11,7 @@ Head to the [ZeroDev dashboard](https://dashboard.zerodev.app/).  Here, create a
 With your project set up, follow these simple steps to run the demo locally:
 
 ```bash
-git clone https://github.com/Danimal01/zerodev-danimalDemo
+git clone https://github.com/Danimal01/zerodev-UnlimitDemo.git
 cd zerodev-danimalDemo
 yarn install
 export REACT_APP_ZERODEV_PROJECT_ID="your-project-id"

@@ -10,10 +10,41 @@ const OnrampPage: React.FC = () => {
   const overlayInstanceSDK = useRef<GateFiSDK | null>(null);
   const embedInstanceSDK = useRef<GateFiSDK | null>(null);
 
+  const [webhookData, setWebhookData] = useState(null);
+
+  useEffect(() => {
+    // Simulate receiving webhook data
+    // Replace this with code to receive actual webhook data from the provided URL
+    fetch('https://webhook.site/1e4fe20a-5d19-4bd0-b657-f292479ebd35')
+      .then((response) => response.json())
+      .then((data) => {
+        setWebhookData(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching webhook data:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (webhookData) {
+      // Trigger the logic to send sandbox tokens to the destination wallet
+      console.log('Webhook data received:', webhookData)
+      // sendTokensToDestination(webhookData.destinationAddress, webhookData.tokens);
+    }
+  }, [webhookData]);
+
+  // const sendTokensToDestination = (destinationAddress, tokens) => {
+  //   // Implement the logic to send tokens to the specified address
+  //   // You may need to interact with the Aave API or a sandbox environment here
+  //   console.log(`Sending ${tokens} tokens to ${destinationAddress}`);
+  // };
+
   // Function to create a new embed SDK instance
   const createEmbedSdkInstance = () => {
     const randomString = crypto.randomBytes(32).toString('hex');
 
+    // Note: The unlimit SDK processes order really slowly. We will use a quick hack to mimic the transaction transfer.
+    // The hack will invovle webhooks
     embedInstanceSDK.current =
       typeof document !== 'undefined'
         ? new GateFiSDK({
