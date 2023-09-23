@@ -6,13 +6,14 @@ import {
   Navigate
 } from "react-router-dom";
 import Onramp from './pages/OnrampPage';
+import SwapPage from './pages/SwapPage';
 // import Experiment from './examples/Experiment';
 
 
 const links = [
   { path: '/Dashboard', label: 'Dashboard', element: <Onramp /> },
   { path: '/Onramp', label: 'Onramp', element: <Onramp /> },
-  { path: '/Swap', label: 'Swap', element: <Onramp /> },
+  { path: '/Swap', label: 'Swap', element: <SwapPage /> },
   { path: '/Inbox', label: 'Inbox', element: <Onramp /> },
   { path: '/Messages', label: 'Messages', element: <Onramp /> },
 

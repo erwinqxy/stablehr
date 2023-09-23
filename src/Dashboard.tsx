@@ -79,7 +79,9 @@ export function Dashboard({ children, links }: DashboardProps) {
 
     useEffect(() => {
         if (isConnected) {
-            const zeroDevWeb3Auth = new ZeroDevWeb3Auth([process.env.REACT_APP_ZERODEV_PROJECT_ID || 'a0ec3d87-0894-4a6f-b744-6314890b13b3'])
+            const zeroDevWeb3Auth = new ZeroDevWeb3Auth([
+              '1afd89c5-cb11-4b19-bf4a-f1d7fa10f6b7',
+            ]);
             zeroDevWeb3Auth.getUserInfo().then(console.log)
         }
     }, [isConnected])

@@ -7,7 +7,7 @@ import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import crypto from 'crypto-browserify';
 import { Page } from '../Page';
 
-const OnrampExample: React.FC = () => {
+const OnrampPage: React.FC = () => {
   const [showIframe, setShowIframe] = useState(false);
   const overlayInstanceSDK = useRef<GateFiSDK | null>(null);
   const embedInstanceSDK = useRef<GateFiSDK | null>(null);
@@ -80,7 +80,7 @@ const OnrampExample: React.FC = () => {
     embedInstanceSDK.current =
       typeof document !== 'undefined'
         ? new GateFiSDK({
-            merchantId: '9e34f479-b43a-4372-8bdf-90689e16cd5b',
+            merchantId: '88fd676b-ea6d-4d99-88cb-110a9fae0264',
             displayMode: GateFiDisplayModeEnum.Embedded,
             nodeSelector: '#embed-button',
             isSandbox: true,
@@ -172,4 +172,4 @@ const OnrampExample: React.FC = () => {
   );
 };
 
-export default OnrampExample;
+export default OnrampPage;
