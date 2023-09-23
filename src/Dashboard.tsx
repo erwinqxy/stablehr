@@ -102,7 +102,8 @@ export function Dashboard({ children, links }: DashboardProps) {
                         {
                             matches ? <MediaQuery largerThan={"sm"} styles={{ paddingLeft: 20, paddingRight: 20 }}>
                                 <Group className={classes.header} position="apart">
-                                    <UnlimitLogo width={'100%'} />
+                                    {/* Todo: Fix this logo */}
+                                    {/* <img src='./assets/images/logo.png' alt="Logo" width="10%" height="10%"></img> */}
                                 </Group>
                             </MediaQuery> : null
                         }

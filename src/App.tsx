@@ -5,19 +5,18 @@ import {
   Outlet,
   Navigate
 } from "react-router-dom";
-import { SponsoredGasExample } from './examples/SponsoredGasExample';
-import { BatchExample } from './examples/BatchExample';
-import OnrampExample from './examples/OnrampExample';
-import EndpointExamples from './examples/EndpointExamples';
+import Onramp from './pages/OnrampPage';
 // import Experiment from './examples/Experiment';
 
 
 const links = [
-  { path: '/gas-free', label: 'Pay Gas for Users', element: <SponsoredGasExample /> },
-  { path: '/bundle', label: 'Bundle Transactions', element: <BatchExample /> },
-  { path: '/OnrampExample', label: 'Onramp', element: <OnrampExample /> },
-  { path: '/EndpointExamples', label: 'API Endpoints', element: <EndpointExamples /> },
-  // { path: '/Experiment', label: 'Experiment', element: <Experiment /> },
+  { path: '/Dashboard', label: 'Dashboard', element: <Onramp /> },
+  { path: '/Onramp', label: 'Onramp', element: <Onramp /> },
+  { path: '/Swap', label: 'Swap', element: <Onramp /> },
+  { path: '/Inbox', label: 'Inbox', element: <Onramp /> },
+  { path: '/Messages', label: 'Messages', element: <Onramp /> },
+
+  // { path: '/Experiment', label: 'Experiment', element: <Experiment/> },
 ];
 
 const router = createBrowserRouter([
