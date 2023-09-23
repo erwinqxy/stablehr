@@ -1,77 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable no-useless-concat */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GateFiDisplayModeEnum, GateFiSDK } from '@gatefi/js-sdk';
-import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import { FC, useRef, useState } from 'react';
 import crypto from 'crypto-browserify';
 import { Page } from '../Page';
+import Logo from '../resources/assets/images/logo.svg';
 
 const OnrampPage: React.FC = () => {
   const [showIframe, setShowIframe] = useState(false);
   const overlayInstanceSDK = useRef<GateFiSDK | null>(null);
   const embedInstanceSDK = useRef<GateFiSDK | null>(null);
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
-
-  useEffect(() => {
-    return () => {
-      overlayInstanceSDK.current?.destroy();
-      overlayInstanceSDK.current = null;
-      embedInstanceSDK.current?.destroy();
-      embedInstanceSDK.current = null;
-    };
-  }, []);
-
-  const handleOnClickEmbed = () => {
-    if (showIframe) {
-      embedInstanceSDK.current?.hide();
-      setShowIframe(false);
-    } else {
-      if (!embedInstanceSDK.current) {
-        createEmbedSdkInstance();
-      }
-      embedInstanceSDK.current?.show();
-      setShowIframe(true);
-    }
-  };
-
-  const handleCloseEmbed = () => {
-    embedInstanceSDK.current?.destroy();
-    embedInstanceSDK.current = null;
-    setShowIframe(false);
-  };
-
-  const handleOnClick = () => {
-    if (overlayInstanceSDK.current) {
-      if (isOverlayVisible) {
-        overlayInstanceSDK.current.hide();
-        setIsOverlayVisible(false);
-      } else {
-        overlayInstanceSDK.current.show();
-        setIsOverlayVisible(true);
-      }
-    } else {
-      const randomString = crypto.randomBytes(32).toString('hex');
-      overlayInstanceSDK.current = new GateFiSDK({
-        merchantId: '9e34f479-b43a-4372-8bdf-90689e16cd5b',
-        displayMode: GateFiDisplayModeEnum.Overlay,
-        nodeSelector: '#overlay-button',
-        isSandbox: true,
-        walletAddress: 'bc1q5z426v3ux753fjm2xwda4gp62f89w0f7uvfrfl',
-        email: 'testoooor@gmail.com',
-        externalId: randomString,
-        defaultFiat: {
-          currency: 'EUR',
-          amount: '500',
-        },
-        defaultCrypto: {
-          currency: 'BTC',
-        },
-      });
-    }
-    overlayInstanceSDK.current?.show();
-    setIsOverlayVisible(true);
-  };
 
   // Function to create a new embed SDK instance
   const createEmbedSdkInstance = () => {
@@ -85,7 +22,7 @@ const OnrampPage: React.FC = () => {
             nodeSelector: '#embed-button',
             isSandbox: true,
             walletAddress: '0xD4e1BA82436238187254C4d47dd3395A69B08b1E',
-            email: 'erwin.quek@u.nus.com',
+            email: 'erwin.quek.xian.yi+03@gmail.com',
             externalId: randomString,
             defaultFiat: {
               currency: 'USD',
@@ -98,16 +35,20 @@ const OnrampPage: React.FC = () => {
         : null;
   };
 
-  const handleHostedFlowClick = () => {
-    const url =
-      'https://onramp-sandbox.gatefi.com/?merchantId=9e34f479-b43a-4372-8bdf-90689e16cd5b';
-    window.open(url, '_blank');
-  };
+  useEffect(() => {
+    createEmbedSdkInstance(); // Call the function when the component mounts
+    return () => {
+      overlayInstanceSDK.current?.destroy();
+      overlayInstanceSDK.current = null;
+      embedInstanceSDK.current?.destroy();
+      embedInstanceSDK.current = null;
+    };
+  }, []);
 
   return (
     <Page
       title={'Onramp'}
-      description={'Onramp users with our SDK or Hosted Flows'}
+      description={'Buy stablecoins with fiat.'}
       docs={
         'https://docs.gatefi.com/docs/gatefi-docs/7p34n1uhrzlg8-hosted-mode-integration'
       }
@@ -119,43 +60,12 @@ const OnrampPage: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        {/* Buttons with modern styling */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '10px',
-            marginTop: '10px',
-          }}
-        >
-          <button
-            onClick={handleOnClickEmbed}
-            style={{
-              background: '#2775ca',
-              border: 'none',
-              borderRadius: '5px',
-              padding: '10px 20px',
-              fontSize: '1rem',
-              cursor: 'pointer',
-              transition: '0.3s',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              fontWeight: 'bold',
-              color: 'black',
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.opacity = '0.7')}
-            onMouseOut={(e) => (e.currentTarget.style.opacity = '1')}
-          >
-            Get USDC!
-          </button>
-        </div>
-
         <div
           style={{
             position: 'relative',
             width: '100%',
-            height: '600px',
+            height: '100%',
             marginTop: '20px',
-            // padding: showIframe ? "20px" : "0",
             boxSizing: 'border-box',
             overflow: 'auto',
           }}
@@ -165,8 +75,26 @@ const OnrampPage: React.FC = () => {
             style={{ width: '100%', height: showIframe ? 'calc(100% - 40px)' : '100%' }}
           ></div>
         </div>
-
         <div id='overlay-button'></div>
+      </div>
+
+      {/* Additional Component */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '10px',
+          marginTop: '20px',
+          padding: '20px',
+        }}
+      >
+        <p>Built with Unlimit</p>
+        <img
+          src={Logo} // Replace with the actual image path
+          alt='Built with Unlimit'
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
       </div>
     </Page>
   );
