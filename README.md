@@ -1,4 +1,4 @@
-# StableHR 
+# StableHR - FE 
 StableHR is a cross-border automated payroll system that allows efficient, low-cost, multi-currency transfers. 
 
 ## Table of Contents 
