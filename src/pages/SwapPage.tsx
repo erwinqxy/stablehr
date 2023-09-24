@@ -53,16 +53,6 @@ const SwapPage: React.FC = () => {
     });
   };
 
-  const jsonData = `{
-    "txHash": "0xa8f2a4f35a802e1a59744d2512901263daee67887b53562086722eb40ed6c932",
-    "sender": "0xdd2fd4581271e230360230f9337d5c0430bf44c0",
-    "receiver": "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
-    "srcCurrency": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-    "dstCurrency": "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
-}`;
-
-  // const quoteDataJson = `{jbewlgjewb: 3252}`;
-
 
   const [quote, setQuote] = useState("");
   const [swap, setSwap] = useState("");
@@ -91,7 +81,6 @@ const SwapPage: React.FC = () => {
       const response = await axios.get(`http://127.0.0.1:7000/swap?from=${quoteData.swapFrom}&to=${quoteData.swapTo}&amount=${quoteData.amount}&senderAddress=${swapData.senderAddress}&receiverAddress=${swapData.receiverAddress}`);
       console.log(response.data);
       setSwap(response.data);
-      setIsSwapDisabled(false);
     } catch (error) {
       console.error(error);
     }
@@ -163,7 +152,7 @@ const SwapPage: React.FC = () => {
         <button type='submit' style={{marginLeft: "10px", marginTop: "10px"}} onSubmit={handleGetQuote}>Get Quote</button>
       </form>
       <br />
-      {quote !== "" && <p> {quote}</p>}
+      {quote !== "" && <h4>Rate: {quote}</h4>}
 
       <form onSubmit={handleSwap}>
         <br />
@@ -209,25 +198,11 @@ const SwapPage: React.FC = () => {
           Swap Now!
         </button>
       </form>
-      {swap !== "" && (
+      <h3>Check out your Transaction Below</h3>
   <div style={{ marginLeft: "10px" }}>
     <h2 style={{ marginLeft: "3px" }}> Swap Details: </h2>
-    {(() => {
-      try {
-        const swapData = JSON.parse(swap);
-        return (
-          <>
-          <h3> Check out your Transaction Below!</h3>
-            <p> Transaction Hash: {swapData.txHash}</p>
-          </>
-        );
-      } catch (error) {
-        return <p>Invalid JSON data</p>;
-      }
-    })()}
+    <p>Transaction Hash: <h4>{swap}</h4></p>
   </div>
-)}
-
       <div
         style={{
           display: 'flex',
@@ -238,7 +213,7 @@ const SwapPage: React.FC = () => {
           padding: '20px',
         }}
       >
-        <p>Built with OneInc</p>
+        <p>Built with 1Inch Swap API</p>
         <img
           src={Logo} // Replace with the actual image path
           alt='Built with OneInch'
