@@ -5,21 +5,24 @@ import { ethers } from "ethers";
 import styled, { keyframes } from "styled-components";
 import { getEnv, loadKeys, storeKeys, wipeKeys } from "./helpers";
 import { ConversationContainer } from "./ConversationContainer";
+import { useMessage } from "../context/MessageContext";
 
 export function UInbox({ wallet, env }) {
-  const initialIsOpen =
-    localStorage.getItem("isWidgetOpen") === "true" || false;
+  // const initialIsOpen =
+  // localStorage.getItem("isWidgetOpen") === "true" || false;
   const initialIsOnNetwork =
     localStorage.getItem("isOnNetwork") === "true" || false;
   const initialIsConnected =
     (localStorage.getItem("isConnected") && wallet === "true") || false;
 
-  const [isOpen, setIsOpen] = useState(initialIsOpen);
+  // const [isOpen, setIsOpen] = useState(initialIsOpen);
   const [isOnNetwork, setIsOnNetwork] = useState(initialIsOnNetwork);
   const [isConnected, setIsConnected] = useState(initialIsConnected);
   const [xmtpClient, setXmtpClient] = useState();
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [signer, setSigner] = useState();
+
+  const { open, openInbox, closeInbox } = useMessage();
 
   useEffect(() => {
     if (wallet) {
@@ -30,9 +33,9 @@ export function UInbox({ wallet, env }) {
 
   useEffect(() => {
     localStorage.setItem("isOnNetwork", isOnNetwork.toString());
-    localStorage.setItem("isWidgetOpen", isOpen.toString());
+    localStorage.setItem("isWidgetOpen", open.toString());
     localStorage.setItem("isConnected", isConnected.toString());
-  }, [isOpen, isConnected, isOnNetwork]);
+  }, [open, isConnected, isOnNetwork]);
 
   useEffect(() => {
     if (signer && isOnNetwork) {
@@ -55,7 +58,7 @@ export function UInbox({ wallet, env }) {
     }
   };
 
-  const getAddress = async (signer) => {
+  const getAddress = async signer => {
     try {
       return await signer?.getAddress();
     } catch (e) {
@@ -98,11 +101,11 @@ export function UInbox({ wallet, env }) {
   };
 
   const openWidget = () => {
-    setIsOpen(true);
+    openInbox();
   };
 
   const closeWidget = () => {
-    setIsOpen(false);
+    closeInbox();
   };
   // Define uinbox object for global access
   window.uinbox = {
@@ -125,12 +128,12 @@ export function UInbox({ wallet, env }) {
   return (
     <>
       <FloatingLogo
-        onClick={isOpen ? closeWidget : openWidget}
-        className={isOpen ? "spin-clockwise" : "spin-counter-clockwise"}
+        onClick={open ? closeWidget : openWidget}
+        className={open ? "spin-clockwise" : "spin-counter-clockwise"}
       >
         <SVGLogo />
       </FloatingLogo>
-      {isOpen && (
+      {(open || open) && (
         <UButton className={isOnNetwork ? "expanded" : ""}>
           {isConnected && <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>}
           {isConnected && isOnNetwork && (
@@ -199,8 +202,8 @@ const FloatingLogo = styled.div`
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 30px;
-  height: 30px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background-color: white;
   display: flex;
@@ -211,6 +214,7 @@ const FloatingLogo = styled.div`
   cursor: pointer;
   transition: transform 0.3s ease;
   padding: 5px;
+  z-index: 99;
 
   :active {
     transform: scale(0.9);
@@ -244,12 +248,11 @@ const UButton = styled.div`
   position: fixed;
   bottom: 70px;
   right: 20px;
-  width: 300px;
-  height: 400px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  width: 350px;
+  height: 450px;
+  background-color: #1a1b1e;
+  border: 1px #26d9a3 solid;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   overflow: hidden;
   display: flex;
@@ -276,13 +279,19 @@ const WidgetContent = styled.div`
 `;
 
 const BtnXmtp = styled.button`
-  background-color: #f0f0f0;
+  background-color: #26d9a3;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid grey;
   padding: 10px;
   border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
 
 const WidgetFooter = styled.div`
@@ -308,6 +317,10 @@ const LogoutBtn = styled.button`
   border: none;
   font-size: 10px;
   cursor: pointer;
+
+  &:hover {
+    color: #26d9a3;
+  }
 `;
 
 const ConversationHeader = styled.div`
@@ -347,6 +360,6 @@ const Powered = styled.span`
 `;
 
 const PoweredLogo = styled(SVGLogo)`
-  width: ${(props) => props.width || "50px"};
-  fill: ${(props) => props.fillColor || "#000"};
+  width: ${props => props.width || "50px"};
+  fill: ${props => props.fillColor || "#000"};
 `;

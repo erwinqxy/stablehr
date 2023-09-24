@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const MessageItem = ({ message, senderAddress, client }) => {
-  const renderMessage = (message) => {
+  const renderMessage = message => {
     try {
       if (message?.content.length > 0) {
         return <RenderedMessage>{message?.content}</RenderedMessage>;
@@ -27,7 +27,7 @@ const MessageItem = ({ message, senderAddress, client }) => {
         <Footer>
           <TimeStamp>
             {`${new Date(message.sent).getHours()}:${String(
-              new Date(message.sent).getMinutes(),
+              new Date(message.sent).getMinutes()
             ).padStart(2, "0")}`}
           </TimeStamp>
         </Footer>
@@ -43,7 +43,8 @@ const RenderedMessage = styled.div`
   padding: 0px;
 `;
 const MessageContent = styled.div`
-  background-color: lightblue;
+  background-color: gray;
+  color: #fff;
   padding: 5px 10px;
 
   align-self: flex-start;
@@ -54,7 +55,6 @@ const MessageContent = styled.div`
   border-radius: 5px;
   max-width: 80%;
   word-break: break-word;
-  cursor: pointer;
   list-style: none;
 `;
 
@@ -79,5 +79,5 @@ const Footer = styled.div`
 
 const TimeStamp = styled.span`
   font-size: 8px;
-  color: grey;
+  color: lightgray;
 `;

@@ -10,7 +10,7 @@ module.exports = function override(config) {
     https: require.resolve("https-browserify"),
     os: require.resolve("os-browserify"),
     url: require.resolve("url"),
-    zlib: require.resolve('browserify-zlib'),
+    zlib: require.resolve("browserify-zlib"),
   });
   config.resolve.fallback = fallback;
   config.plugins = (config.plugins || []).concat([
@@ -21,7 +21,7 @@ module.exports = function override(config) {
   ]);
   config.ignoreWarnings = [/Failed to parse source map/];
   config.stats = {
-    warningsFilter: /Module not found: Error: Can't resolve/
+    warningsFilter: /Module not found: Error: Can't resolve/,
   };
   config.module.rules.push({
     test: /\.(js|mjs|jsx)$/,
