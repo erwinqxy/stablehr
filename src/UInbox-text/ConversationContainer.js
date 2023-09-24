@@ -248,7 +248,7 @@ const ConversationListItem = styled.li`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #26d9a3;
+    background-color: #67e4be;
   }
 `;
 

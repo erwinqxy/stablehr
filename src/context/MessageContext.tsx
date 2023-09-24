@@ -15,7 +15,9 @@ const MessageContext = createContext<MessageContextType | null>(null);
 export const MessageProvider: React.FC<IMessageProviderProps> = ({
   children,
 }) => {
-  const [open, setOpen] = useState(false);
+  const initialIsOpen =
+    localStorage.getItem("isWidgetOpen") === "true" || false;
+  const [open, setOpen] = useState(initialIsOpen);
 
   const openInbox = () => {
     setOpen(true);

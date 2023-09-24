@@ -129,7 +129,7 @@ const Graph: React.FC = () => {
           fontSize: 18,
         }}
       >
-        Here's a quick glance at the exchange rate between{" "}
+        Checkout the exchange rate between{" "}
         <span style={{ fontWeight: 600 }}>USDC</span> and{" "}
         <span style={{ fontWeight: 600 }}>QCAD</span>
       </p>

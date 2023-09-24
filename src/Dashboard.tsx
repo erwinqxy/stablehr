@@ -18,6 +18,7 @@ import { useAccount } from "wagmi";
 import { Login } from "./Login";
 import { ZeroDevWeb3Auth } from "@zerodev/web3auth";
 import InboxPage from "./InboxPage-text";
+import StableHrLogo from "./resources/assets/images/stablehr_logo.png";
 
 const useStyles = createStyles((theme, _params) => {
   return {
@@ -130,8 +131,12 @@ export function Dashboard({ children, links }: DashboardProps) {
                 styles={{ paddingLeft: 20, paddingRight: 20 }}
               >
                 <Group className={classes.header} position="apart">
-                  {/* Todo: Fix this logo */}
-                  {/* <img src='./assets/images/logo.png' alt="Logo" width="10%" height="10%"></img> */}
+                  <img
+                    src={StableHrLogo}
+                    alt="Logo"
+                    width="100%"
+                    height="100%"
+                  />
                 </Group>
               </MediaQuery>
             ) : null}

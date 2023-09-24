@@ -8,21 +8,21 @@ import { ConversationContainer } from "./ConversationContainer";
 import { useMessage } from "../context/MessageContext";
 
 export function UInbox({ wallet, env }) {
-  const initialIsOpen =
-    localStorage.getItem("isWidgetOpen") === "true" || false;
+  // const initialIsOpen =
+  // localStorage.getItem("isWidgetOpen") === "true" || false;
   const initialIsOnNetwork =
     localStorage.getItem("isOnNetwork") === "true" || false;
   const initialIsConnected =
     (localStorage.getItem("isConnected") && wallet === "true") || false;
 
-  const [isOpen, setIsOpen] = useState(initialIsOpen);
+  // const [isOpen, setIsOpen] = useState(initialIsOpen);
   const [isOnNetwork, setIsOnNetwork] = useState(initialIsOnNetwork);
   const [isConnected, setIsConnected] = useState(initialIsConnected);
   const [xmtpClient, setXmtpClient] = useState();
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [signer, setSigner] = useState();
 
-  const { open, closeInbox } = useMessage();
+  const { open, openInbox, closeInbox } = useMessage();
 
   useEffect(() => {
     if (wallet) {
@@ -33,9 +33,9 @@ export function UInbox({ wallet, env }) {
 
   useEffect(() => {
     localStorage.setItem("isOnNetwork", isOnNetwork.toString());
-    localStorage.setItem("isWidgetOpen", isOpen.toString());
+    localStorage.setItem("isWidgetOpen", open.toString());
     localStorage.setItem("isConnected", isConnected.toString());
-  }, [isOpen, isConnected, isOnNetwork]);
+  }, [open, isConnected, isOnNetwork]);
 
   useEffect(() => {
     if (signer && isOnNetwork) {
@@ -101,12 +101,11 @@ export function UInbox({ wallet, env }) {
   };
 
   const openWidget = () => {
-    setIsOpen(true);
+    openInbox();
   };
 
   const closeWidget = () => {
     closeInbox();
-    setIsOpen(false);
   };
   // Define uinbox object for global access
   window.uinbox = {
@@ -129,12 +128,12 @@ export function UInbox({ wallet, env }) {
   return (
     <>
       <FloatingLogo
-        onClick={isOpen ? closeWidget : openWidget}
-        className={isOpen ? "spin-clockwise" : "spin-counter-clockwise"}
+        onClick={open ? closeWidget : openWidget}
+        className={open ? "spin-clockwise" : "spin-counter-clockwise"}
       >
         <SVGLogo />
       </FloatingLogo>
-      {(isOpen || open) && (
+      {(open || open) && (
         <UButton className={isOnNetwork ? "expanded" : ""}>
           {isConnected && <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>}
           {isConnected && isOnNetwork && (
