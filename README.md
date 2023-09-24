@@ -60,13 +60,13 @@ As a team of five undergraduates from the National University of Singapore, we a
 
 ### TLDR: Tech Stack
 
-WalletConnect and Web3Auth for wallet integration and account management
-1Inch for a comprehensive crypto quote and swap APIs
-Unlimit’s Onramp SDK for users to convert fiat to crypto
-Filecoin’s Web3Storage to store website assets
-XMTP for integrated messaging protocol
-Nouns artworks to beautify and add personality to the project
-Polygon Mumbai testnet for application transactions
+- WalletConnect and Web3Auth for wallet integration and account management
+- 1Inch for a comprehensive crypto quote and swap APIs
+- Unlimit’s Onramp SDK for users to convert fiat to crypto
+- Filecoin’s Web3Storage to store website assets
+- XMTP for integrated messaging protocol
+- Nouns artworks to beautify and add personality to the project
+- Polygon Mumbai testnet for application transactions
 
 
 ## How it works
