@@ -1,39 +1,37 @@
-import { Page } from "../Page";
-import { ReactComponent as Noun852 } from "../resources/assets/images/noun852.svg";
-import { ReactComponent as Noun849 } from "../resources/assets/images/noun849.svg";
-import { ReactComponent as Noun837 } from "../resources/assets/images/noun837.svg";
-import Noun123 from "../resources/assets/images/noun123.png";
+import { Page } from '../Page';
 
-import React from "react";
-import fxData from "../resources/data/fx.json";
-import { ResponsiveLine } from "@nivo/line";
-import BlackGlassesIcon from "../resources/assets/images/black160px.png";
-import { createStyles } from "@mantine/core";
-import { Link } from "react-router-dom";
-import { useMessage } from "../context/MessageContext";
+import React, { useEffect, useState } from 'react';
+import fxData from '../resources/data/fx.json';
+import nounIpfs from '../resources/data/ipfs_files.json';
+import { ResponsiveLine } from '@nivo/line';
+import BlackGlassesIcon from '../resources/assets/images/black160px.png';
+import { createStyles } from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { useMessage } from '../context/MessageContext';
 import Logo from '../resources/assets/images/nouns.jpg';
 
 interface INounWrapperProps {
-  Noun: JSX.Element;
+  Noun: any;
   description: any;
-  position?: "left" | "right";
+  position?: 'left' | 'right';
+  height?: string;
 }
 
 const useStyles = createStyles((theme, _params) => {
   return {
     button: {
-      alignSelf: "center",
+      alignSelf: 'center',
       borderRadius: 8,
-      width: "80%",
-      background: "#ff0e0e",
-      padding: "14px",
-      cursor: "pointer",
+      width: '80%',
+      background: '#ff0e0e',
+      padding: '14px',
+      cursor: 'pointer',
       marginTop: 30,
-      transition: "all 0.3s",
-      fontFamily: "CustomFont",
+      transition: 'all 0.3s',
+      fontFamily: 'CustomFont',
 
-      "&:hover": {
-        transform: "translateY(-2px)",
+      '&:hover': {
+        transform: 'translateY(-2px)',
       },
     },
   };
@@ -41,7 +39,7 @@ const useStyles = createStyles((theme, _params) => {
 
 const FxRateChart: React.FC = () => {
   const data = fxData.observations.map(({ FXUSDCAD, d }) => ({
-    x: d.replaceAll("-", "/"),
+    x: d.replaceAll('-', '/'),
     y: Number(FXUSDCAD.v),
   }));
 
@@ -49,32 +47,32 @@ const FxRateChart: React.FC = () => {
     <ResponsiveLine
       data={[
         {
-          id: "USD/CAD",
-          color: "hsl(162, 70%, 50%)",
+          id: 'USD/CAD',
+          color: 'hsl(162, 70%, 50%)',
           data,
         },
       ]}
-      colors="hsl(162, 70%, 50%)"
+      colors='hsl(162, 70%, 50%)'
       enableArea
       areaOpacity={0.1}
       margin={{ top: 40, left: 58, bottom: 10 }}
       xScale={{
-        type: "time",
-        format: "%Y/%m/%d",
+        type: 'time',
+        format: '%Y/%m/%d',
         useUTC: false,
-        precision: "day",
+        precision: 'day',
       }}
-      xFormat="time:%b %d, %Y"
+      xFormat='time:%b %d, %Y'
       yScale={{
-        type: "linear",
-        min: "auto",
+        type: 'linear',
+        min: 'auto',
       }}
       axisBottom={null}
       axisLeft={{
         tickSize: 0,
         tickPadding: 24,
-        format: value =>
-          Number(value).toLocaleString("en", {
+        format: (value) =>
+          Number(value).toLocaleString('en', {
             minimumFractionDigits: 3,
             maximumFractionDigits: 3,
           }),
@@ -90,25 +88,42 @@ const FxRateChart: React.FC = () => {
 const NounWrapper: React.FC<INounWrapperProps> = ({
   Noun,
   description,
-  position = "left",
+  position = 'left',
+  height,
 }) => {
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         gap: 48,
-        width: "100%",
+        width: '100%',
       }}
     >
-      {position === "left" ? (
+      {position === 'left' ? (
         <>
-          {Noun}
+          <img
+            src={Noun}
+            style={{
+              borderRadius: 8,
+              minWidth: 320,
+              maxHeight: height || 320,
+            }}
+            alt='Noun'
+          />
           {description}
         </>
       ) : (
         <>
           {description}
-          {Noun}
+          <img
+            src={Noun}
+            style={{
+              borderRadius: 8,
+              minWidth: 320,
+              maxHeight: 320,
+            }}
+            alt='Noun'
+          />
         </>
       )}
     </div>
@@ -122,7 +137,7 @@ const Graph: React.FC = () => {
         paddingTop: 100,
         marginBottom: 100,
       }}
-      id="graph"
+      id='graph'
     >
       <p
         style={{
@@ -130,21 +145,20 @@ const Graph: React.FC = () => {
           fontSize: 18,
         }}
       >
-        Checkout the exchange rate between{" "}
-        <span style={{ fontWeight: 600 }}>USDC</span> and{" "}
-        <span style={{ fontWeight: 600 }}>QCAD</span>
+        Checkout the exchange rate between <span style={{ fontWeight: 600 }}>USDC</span>{' '}
+        and <span style={{ fontWeight: 600 }}>QCAD</span>
       </p>
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
       >
         <h6
           style={{
             fontSize: 24,
-            margin: "0 0 14px",
+            margin: '0 0 14px',
           }}
         >
           USDC / QCAD Chart
@@ -154,7 +168,7 @@ const Graph: React.FC = () => {
             fontSize: 12,
           }}
         >
-          1 USDC ={" "}
+          1 USDC ={' '}
           <span
             style={{
               fontWeight: 400,
@@ -162,20 +176,20 @@ const Graph: React.FC = () => {
             }}
           >
             1.3464
-          </span>{" "}
+          </span>{' '}
           QCAD
         </p>
       </div>
       <div
         style={{
-          width: "100%",
+          width: '100%',
           height: 300,
           marginBottom: 40,
-          background: "#fff",
+          background: '#fff',
           borderRadius: 8,
           paddingLeft: 4,
-          borderBottom: "4px #26D9A3 solid",
-          borderRight: "4px #26D9A3 solid",
+          borderBottom: '4px #26D9A3 solid',
+          borderRight: '4px #26D9A3 solid',
         }}
       >
         <FxRateChart />
@@ -188,11 +202,35 @@ const HomePage: React.FC = () => {
   const { classes, cx } = useStyles();
   const { openInbox } = useMessage();
 
-  const getStarted = () => {
-    var elmntToView = document.getElementById("graph");
+  function shuffleArray(array: Array<string>) {
+    for (let i = array.length - 1; i >= 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements to shuffle
+    }
+    return array;
+  }
+
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    function getRandomItems(arr: string[], numItems: number) {
+      const shuffled = arr.slice(); // Create a copy of the array to avoid modifying the original
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled.slice(0, numItems);
+    }
+
+    const selectedItems = getRandomItems(nounIpfs.noun, 3);
+    setSelectedItems(selectedItems);
+  }, []);
+
+  const scrollToGraph = () => {
+    var elmntToView = document.getElementById('graph');
     if (elmntToView) {
       elmntToView.scrollIntoView({
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -203,7 +241,10 @@ const HomePage: React.FC = () => {
       description='Send cross-border payments to your employees cheaply, quickly, and securely'
     >
       <NounWrapper
-        Noun={<img src={Noun123} alt='noun hero' width={450} />}
+        height={'100%'}
+        Noun={
+          'https://bafybeicvnvvy7ush5gtclhli3klbshzlgsg7douefia3mvzcpmhtrkvsye.ipfs.w3s.link/noun123.png'
+        }
         description={
           <div
             style={{
@@ -230,7 +271,7 @@ const HomePage: React.FC = () => {
               have never been easier.
             </h1>
             <p>Onramp • Swap • Send • Offramp</p>
-            <button className={cx(classes.button)} onClick={getStarted}>
+            <button className={cx(classes.button)} onClick={scrollToGraph}>
               Get Started
               <img
                 src={BlackGlassesIcon}
@@ -257,14 +298,7 @@ const HomePage: React.FC = () => {
         }}
       >
         <NounWrapper
-          Noun={
-            <Noun852
-              style={{
-                borderRadius: 8,
-                minWidth: 320,
-              }}
-            />
-          }
+          Noun={selectedItems?.[0]}
           description={
             <div
               style={{
@@ -311,14 +345,7 @@ const HomePage: React.FC = () => {
           }
         />
         <NounWrapper
-          Noun={
-            <Noun849
-              style={{
-                borderRadius: 8,
-                minWidth: 320,
-              }}
-            />
-          }
+          Noun={selectedItems[1]}
           description={
             <div
               style={{
@@ -373,14 +400,7 @@ const HomePage: React.FC = () => {
           position='right'
         />
         <NounWrapper
-          Noun={
-            <Noun837
-              style={{
-                borderRadius: 8,
-                minWidth: 320,
-              }}
-            />
-          }
+          Noun={selectedItems[2]}
           description={
             <div
               style={{
