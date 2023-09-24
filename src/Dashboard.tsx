@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
     AppShell,
     Navbar,
@@ -21,71 +21,86 @@ import InboxPage from './InboxPage-text';
 
 
 const useStyles = createStyles((theme, _params) => {
-    return {
-        header: {
-            paddingBottom: theme.spacing.md,
-            marginBottom: theme.spacing.md * 1.5,
-            borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-                }`,
-        },
+  return {
+    header: {
+      paddingBottom: theme.spacing.md,
+      marginBottom: theme.spacing.md * 1.5,
+      borderBottom: `1px solid ${
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[4]
+          : theme.colors.gray[2]
+      }`,
+    },
 
-        footer: {
-            paddingTop: theme.spacing.md,
-            marginTop: theme.spacing.md,
-            borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-                }`,
-        },
+    footer: {
+      paddingTop: theme.spacing.md,
+      marginTop: theme.spacing.md,
+      borderTop: `1px solid ${
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[4]
+          : theme.colors.gray[2]
+      }`,
+    },
 
-        link: {
-            ...theme.fn.focusStyles(),
-            display: 'flex',
-            alignItems: 'center',
-            textDecoration: 'none',
-            fontSize: theme.fontSizes.md,
-            color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-            padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
-            borderRadius: theme.radius.sm,
-            fontWeight: 500,
+    link: {
+      ...theme.fn.focusStyles(),
+      display: "flex",
+      alignItems: "center",
+      textDecoration: "none",
+      fontSize: theme.fontSizes.xl,
+      color:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[1]
+          : theme.colors.gray[7],
+      padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+      borderRadius: theme.radius.sm,
+      fontWeight: 500,
+      gap: 12,
 
-            '&:hover': {
-                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-                color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-            },
-        },
+      "&:hover": {
+        backgroundColor:
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[6]
+            : theme.colors.gray[0],
+        color: theme.colorScheme === "dark" ? theme.white : theme.black,
+      },
+    },
 
-
-        linkActive: {
-            '&, &:hover': {
-                backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor })
-                    .background,
-                color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-            },
-        },
-    };
+    linkActive: {
+      "&, &:hover": {
+        backgroundColor: theme.fn.variant({
+          variant: "light",
+          color: theme.primaryColor,
+        }).background,
+        color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
+          .color,
+      },
+    },
+  };
 });
 
 export interface DashboardProps {
-    children: React.ReactNode;
-    links: { path: string; label: string }[];
+  children: React.ReactNode;
+  links: { path: string; label: string; icon: string | null }[];
 }
 
 export function Dashboard({ children, links }: DashboardProps) {
-    const { classes, cx } = useStyles();
-    const theme = useMantineTheme()
-    const matches = useMediaQuery(`(min-width: ${theme.breakpoints.sm}px)`);
-    const mdMatches = useMediaQuery(`(min-width: ${theme.breakpoints.lg}px)`);
-    const [opened, setOpened] = useState(false);
-    const { pathname } = useLocation()
-    const { isConnected } = useAccount();
+  const { classes, cx } = useStyles();
+  const theme = useMantineTheme();
+  const matches = useMediaQuery(`(min-width: ${theme.breakpoints.sm}px)`);
+  const mdMatches = useMediaQuery(`(min-width: ${theme.breakpoints.lg}px)`);
+  const [opened, setOpened] = useState(false);
+  const { pathname } = useLocation();
+  const { isConnected } = useAccount();
 
-    useEffect(() => {
-        if (isConnected) {
-            const zeroDevWeb3Auth = new ZeroDevWeb3Auth([
-              '1afd89c5-cb11-4b19-bf4a-f1d7fa10f6b7',
-            ]);
-            zeroDevWeb3Auth.getUserInfo().then(console.log)
-        }
-    }, [isConnected])
+  useEffect(() => {
+    if (isConnected) {
+      const zeroDevWeb3Auth = new ZeroDevWeb3Auth([
+        "1afd89c5-cb11-4b19-bf4a-f1d7fa10f6b7",
+      ]);
+      zeroDevWeb3Auth.getUserInfo().then(console.log);
+    }
+  }, [isConnected]);
 
     if (!isConnected) {
         return <Login />
