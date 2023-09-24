@@ -54,7 +54,7 @@ export function Login() {
           Use Unlimit to login!
         </Title>
         <div>
-          <ConnectButton label={'Login'} /> {/* Added margin for spacing */}
+          <ConnectButton label={'Login with Web3Auth'} /> {/* Added margin for spacing */}
         </div>
         <Title className={classes.title} style={{ textAlign: 'center' }}>
           {' '}
@@ -66,7 +66,7 @@ export function Login() {
           Use WalletConnect to Login!
         </Title>
         <div>
-          <WalletConnectButton label='Login' /> {/* Added margin for spacing */}
+          <WalletConnectButton label='Login with WalletConnect' /> {/* Added margin for spacing */}
         </div>
       </Flex>
     </Container>
