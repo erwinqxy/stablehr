@@ -8,13 +8,28 @@ import {
 import Onramp from "./pages/OnrampPage";
 import SwapPage from "./pages/SwapPage";
 import HomePage from "./pages/HomePage";
+import HomeIcon from "./resources/assets/icons/home.svg";
+import OnrampIcon from "./resources/assets/icons/onramp.svg";
+import SwapIcon from "./resources/assets/icons/swap.svg";
+import InboxIcon from "./resources/assets/icons/inbox.svg";
+import MessageIcon from "./resources/assets/icons/message.svg";
 
 const links = [
-  { path: "/home", label: "Home", element: <HomePage /> },
-  { path: "/onramp", label: "Onramp", element: <Onramp /> },
-  { path: "/swap", label: "Swap", element: <SwapPage /> },
-  { path: "/inbox", label: "Inbox", element: <Onramp /> },
-  { path: "/messages", label: "Messages", element: <Onramp /> },
+  {
+    path: "/home",
+    label: "Home",
+    element: <HomePage />,
+    icon: HomeIcon,
+  },
+  { path: "/onramp", label: "Onramp", element: <Onramp />, icon: OnrampIcon },
+  { path: "/swap", label: "Swap", element: <SwapPage />, icon: SwapIcon },
+  { path: "/inbox", label: "Inbox", element: <Onramp />, icon: InboxIcon },
+  {
+    path: "/messages",
+    label: "Messages",
+    element: <Onramp />,
+    icon: MessageIcon,
+  },
 ];
 
 const router = createBrowserRouter([

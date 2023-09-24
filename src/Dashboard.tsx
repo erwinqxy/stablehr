@@ -45,7 +45,7 @@ const useStyles = createStyles((theme, _params) => {
       display: "flex",
       alignItems: "center",
       textDecoration: "none",
-      fontSize: theme.fontSizes.md,
+      fontSize: theme.fontSizes.xl,
       color:
         theme.colorScheme === "dark"
           ? theme.colors.dark[1]
@@ -53,6 +53,7 @@ const useStyles = createStyles((theme, _params) => {
       padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
       borderRadius: theme.radius.sm,
       fontWeight: 500,
+      gap: 12,
 
       "&:hover": {
         backgroundColor:
@@ -78,7 +79,7 @@ const useStyles = createStyles((theme, _params) => {
 
 export interface DashboardProps {
   children: React.ReactNode;
-  links: { path: string; label: string }[];
+  links: { path: string; label: string; icon: string | null }[];
 }
 
 export function Dashboard({ children, links }: DashboardProps) {
@@ -111,6 +112,9 @@ export function Dashboard({ children, links }: DashboardProps) {
               ? theme.colors.dark[8]
               : theme.colors.gray[0],
         },
+        root: {
+          fontFamily: "CustomFont",
+        },
       }}
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
@@ -120,6 +124,9 @@ export function Dashboard({ children, links }: DashboardProps) {
           hiddenBreakpoint="sm"
           hidden={!opened}
           width={{ sm: 200, lg: 300 }}
+          style={{
+            fontFamily: "CustomFont",
+          }}
         >
           <Navbar.Section grow mt="md" component={ScrollArea}>
             {matches ? (
@@ -144,6 +151,7 @@ export function Dashboard({ children, links }: DashboardProps) {
                   setOpened(false);
                 }}
               >
+                <img src={item?.icon ?? ""} alt={item.label} />
                 <span>{item.label}</span>
               </Link>
             ))}
