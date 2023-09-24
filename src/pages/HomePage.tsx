@@ -10,6 +10,7 @@ import { ResponsiveLine } from "@nivo/line";
 import BlackGlassesIcon from "../resources/assets/images/black160px.png";
 import { createStyles } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { useMessage } from "../context/MessageContext";
 
 interface INounWrapperProps {
   Noun: JSX.Element;
@@ -184,6 +185,7 @@ const Graph: React.FC = () => {
 
 const HomePage: React.FC = () => {
   const { classes, cx } = useStyles();
+  const { openInbox } = useMessage();
 
   const getStarted = () => {
     var elmntToView = document.getElementById("graph");
@@ -407,24 +409,23 @@ const HomePage: React.FC = () => {
               >
                 Integrated Web3 messaging system over XMTP
               </p>
-              <Link to="/messages">
-                <button
-                  className={cx(classes.button)}
+              <button
+                className={cx(classes.button)}
+                style={{
+                  width: "40%",
+                }}
+                onClick={openInbox}
+              >
+                Open Message Inbox
+                <img
+                  src={BlackGlassesIcon}
+                  alt="black glasses"
+                  width={32}
                   style={{
-                    width: "35%",
+                    marginLeft: 12,
                   }}
-                >
-                  Explore Message
-                  <img
-                    src={BlackGlassesIcon}
-                    alt="black glasses"
-                    width={32}
-                    style={{
-                      marginLeft: 12,
-                    }}
-                  />
-                </button>
-              </Link>
+                />
+              </button>
             </div>
           }
         />

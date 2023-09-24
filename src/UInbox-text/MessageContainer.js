@@ -17,7 +17,7 @@ export const MessageContainer = ({
   const updateMessages = (prevMessages, newMessage) => {
     // Check if the new message already exists
     const doesMessageExist = prevMessages.some(
-      (existingMessage) => existingMessage.id === newMessage.id,
+      existingMessage => existingMessage.id === newMessage.id
     );
 
     if (!doesMessageExist) {
@@ -34,7 +34,7 @@ export const MessageContainer = ({
         const initialMessages = await conversation?.messages();
 
         let updatedMessages = [];
-        initialMessages.forEach((message) => {
+        initialMessages.forEach(message => {
           updatedMessages = updateMessages(updatedMessages, message);
         });
 
@@ -51,7 +51,7 @@ export const MessageContainer = ({
     let stream = await conversation.streamMessages();
     for await (const message of stream) {
       console.log("Received new message", message);
-      setMessages((prevMessages) => {
+      setMessages(prevMessages => {
         return updateMessages(prevMessages, message);
       });
     }
@@ -66,7 +66,7 @@ export const MessageContainer = ({
     };
   }, [conversation]);
 
-  const handleSendMessage = async (newMessage) => {
+  const handleSendMessage = async newMessage => {
     if (!newMessage.trim()) {
       alert("empty message");
       return;
@@ -97,7 +97,7 @@ export const MessageContainer = ({
       ) : (
         <>
           <MessagesList>
-            {messages.map((message) => {
+            {messages.map(message => {
               return (
                 <MessageItem
                   key={message.id}
@@ -110,7 +110,7 @@ export const MessageContainer = ({
             <div ref={messagesEndRef} />
           </MessagesList>
           <MessageInput
-            onSendMessage={(msg) => {
+            onSendMessage={msg => {
               handleSendMessage(msg);
             }}
           />

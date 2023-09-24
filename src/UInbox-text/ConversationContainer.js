@@ -16,7 +16,7 @@ export const ConversationContainer = ({
 
   const [canMessage, setCanMessage] = useState(false);
   const [conversations, setConversations] = useState([]);
-  const isValidEthereumAddress = (address) => {
+  const isValidEthereumAddress = address => {
     return /^0x[a-fA-F0-9]{40}$/.test(address);
   };
 
@@ -30,7 +30,7 @@ export const ConversationContainer = ({
       const allConversations = await client.conversations.list();
 
       const sortedConversations = allConversations.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       if (isMounted) {
         setConversations(sortedConversations);
@@ -41,13 +41,13 @@ export const ConversationContainer = ({
       stream = await client.conversations.stream();
       for await (const conversation of stream) {
         console.log(
-          `New conversation started with ${conversation.peerAddress}`,
+          `New conversation started with ${conversation.peerAddress}`
         );
         if (isMounted) {
-          setConversations((prevConversations) => {
+          setConversations(prevConversations => {
             const newConversations = [...prevConversations, conversation];
             return newConversations.sort(
-              (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+              (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
             );
           });
         }
@@ -66,18 +66,18 @@ export const ConversationContainer = ({
   }, []); // Empty dependency array means this effect runs once on mount and cleanup runs on unmount
 
   const filteredConversations = conversations.filter(
-    (conversation) =>
+    conversation =>
       conversation?.peerAddress
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) &&
-      conversation?.peerAddress !== client.address,
+      conversation?.peerAddress !== client.address
   );
-  const selectConversation = async (conversation) => {
+  const selectConversation = async conversation => {
     console.log(conversation);
     setSelectedConversation(conversation);
   };
 
-  const getRelativeTimeLabel = (dateString: string) => {
+  const getRelativeTimeLabel = dateString => {
     const date = new Date(dateString);
     const now = new Date();
 
@@ -100,7 +100,7 @@ export const ConversationContainer = ({
       return `${diffWeeks} week${diffWeeks > 1 ? "s" : ""} ago`;
     }
   };
-  const handleSearchChange = async (e) => {
+  const handleSearchChange = async e => {
     setSearchTerm(e.target.value);
     const addressInput = e.target.value;
 
@@ -141,7 +141,7 @@ export const ConversationContainer = ({
     }
   };
 
-  const processEthereumAddress = async (address) => {
+  const processEthereumAddress = async address => {
     setPeerAddress(address);
     if (address === client.address) {
       setMessage("No self messaging allowed");
@@ -179,13 +179,14 @@ export const ConversationContainer = ({
                 key={index}
                 onClick={() => {
                   selectConversation(conversation);
-                }}>
+                }}
+              >
                 <ConversationDetails>
                   <ConversationName>
                     {conversation.peerAddress.substring(0, 6) +
                       "..." +
                       conversation.peerAddress.substring(
-                        conversation.peerAddress.length - 4,
+                        conversation.peerAddress.length - 4
                       )}
                   </ConversationName>
                   <MessagePreview>...</MessagePreview>
@@ -202,7 +203,8 @@ export const ConversationContainer = ({
                 <CreateNewButton
                   onClick={() => {
                     setSelectedConversation({ messages: [] });
-                  }}>
+                  }}
+                >
                   Create new conversation
                 </CreateNewButton>
               )}
@@ -239,13 +241,14 @@ const ConversationListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
+  color: #000;
   cursor: pointer;
   background-color: #f0f0f0;
   padding: 10px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: lightblue;
+    background-color: #26d9a3;
   }
 `;
 
