@@ -53,6 +53,20 @@ const SwapPage: React.FC = () => {
     });
   };
 
+  const jsonData = `{
+    "txHash": "0xa8f2a4f35a802e1a59744d2512901263daee67887b53562086722eb40ed6c932",
+    "sender": "0xdd2fd4581271e230360230f9337d5c0430bf44c0",
+    "receiver": "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
+    "srcCurrency": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "dstCurrency": "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
+}`;
+
+  // const quoteDataJson = `{jbewlgjewb: 3252}`;
+
+
+  const [quote, setQuote] = useState("");
+  const [swap, setSwap] = useState("");
+
 
   const handleGetQuote = (e: React.FormEvent) => {
     console.log(quoteData.swapFrom)
@@ -62,6 +76,7 @@ const SwapPage: React.FC = () => {
     axios.get(`http://127.0.0.1:7000/quote?from=${quoteData.swapFrom}&to=${quoteData.swapTo}&amount=${quoteData.amount}`)
     .then(response => {
       console.log(response.data);
+      setQuote(response.data);
       setIsSwapDisabled(false)
     })
     .catch(error => {
@@ -75,6 +90,7 @@ const SwapPage: React.FC = () => {
     try {
       const response = await axios.get(`http://127.0.0.1:7000/swap?from=${quoteData.swapFrom}&to=${quoteData.swapTo}&amount=${quoteData.amount}&senderAddress=${swapData.senderAddress}&receiverAddress=${swapData.receiverAddress}`);
       console.log(response.data);
+      setSwap(response.data);
       setIsSwapDisabled(false);
     } catch (error) {
       console.error(error);
@@ -85,65 +101,133 @@ const SwapPage: React.FC = () => {
     <Page title={'Swap'} description={'Swap users with our SDK or Hosted Flows'}>
       <form onSubmit={handleGetQuote}>
         <br />
-        <label>
+        <label style={{margin: "10px"}}>
           Swap From:
           <input
             type='text'
             name='swapFrom'
             value={quoteData.swapFrom}
             onChange={handleSwapFromChange}
+            style={{
+              fontSize: '16px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              width: '60%',
+              margin: '10px',
+              height: "30px",
+              boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)',
+            }}
           />
         </label>
         <br></br>
-        <label>
+        <label style={{margin: "10px"}}>
           Swap To:
           <input
             type='text'
             name='swapTo'
             value={quoteData.swapTo}
             onChange={handleSwapToChange}
+            style={{
+              fontSize: '16px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              width: '60%',
+              margin: '10px',
+              marginLeft: "30px",
+              height: "30px",
+              boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)',
+            }}
           />
         </label>
         <br></br>
-        <label>
+        <label style={{margin: "10px"}}>
           Amount:
           <input
             type='text'
             name='amount'
             value={quoteData.amount}
             onChange={handleAmountChange}
+            style={{
+              fontSize: '16px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              width: '60%',
+              margin: '10px',
+              marginLeft: "34px",
+              height: "30px",
+              boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)',
+            }}
           />
         </label>
         <br />
-        <button type='submit'>Get Quote</button>
+        <button type='submit' style={{marginLeft: "10px", marginTop: "10px"}} onSubmit={handleGetQuote}>Get Quote</button>
       </form>
       <br />
+      {quote !== "" && <p> {quote}</p>}
+
       <form onSubmit={handleSwap}>
         <br />
-        <label>
+        <label style={{margin: "10px"}}>
           Sender Address:
           <input
             type='text'
             name='senderAddress'
             value={swapData.senderAddress}
             onChange={handleSenderAddChange}
+            style={{
+              fontSize: '16px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              width: '60%',
+              margin: '10px',
+              height: "30px",
+              boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)',
+            }}
           />
         </label>
         <br></br>
-        <label>
+        <label style={{margin: "10px"}}>
           Receiver Address:
           <input
             type='text'
             name='receiverAddress'
             value={swapData.receiverAddress}
             onChange={handleReceiverAddChange}
+            style={{
+              fontSize: '16px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              width: '60%',
+              margin: '10px',
+              height: "30px",
+              boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)',
+            }}
           />
         </label>
         <br />
-        <button type='submit' disabled={isSwapDisabled} onClick={handleSwap}>
+        <button type='submit' disabled={isSwapDisabled} onClick={handleSwap} style={{marginLeft: "10px", marginTop: "10px"}}>
           Swap Now!
         </button>
       </form>
+      {swap !== "" && (
+  <div style={{ marginLeft: "10px" }}>
+    <h2 style={{ marginLeft: "3px" }}> Swap Details: </h2>
+    {(() => {
+      try {
+        const swapData = JSON.parse(swap);
+        return (
+          <>
+          <h3> Check out your Transaction Below!</h3>
+            <p> Transaction Hash: {swapData.txHash}</p>
+          </>
+        );
+      } catch (error) {
+        return <p>Invalid JSON data</p>;
+      }
+    })()}
+  </div>
+)}
+
       <div
         style={{
           display: 'flex',
