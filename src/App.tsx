@@ -23,7 +23,7 @@ const links = [
   },
   { path: "/onramp", label: "Onramp", element: <Onramp />, icon: OnrampIcon },
   { path: "/swap", label: "Swap", element: <SwapPage />, icon: SwapIcon },
-  { path: "/inbox", label: "Inbox", element: <Onramp />, icon: InboxIcon }
+  // { path: "/inbox", label: "Inbox", element: <Onramp />, icon: InboxIcon }
   // { path: '/Experiment', label: 'Experiment', element: <Experiment/> },
 ];
 

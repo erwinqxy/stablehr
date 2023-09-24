@@ -1,8 +1,4 @@
 import { Page } from '../Page';
-import { ReactComponent as Noun852 } from '../resources/assets/images/noun852.svg';
-import { ReactComponent as Noun849 } from '../resources/assets/images/noun849.svg';
-import { ReactComponent as Noun837 } from '../resources/assets/images/noun837.svg';
-import Noun123 from '../resources/assets/images/noun123.png';
 
 import React, { useEffect, useState } from 'react';
 import fxData from '../resources/data/fx.json';
@@ -12,6 +8,7 @@ import BlackGlassesIcon from '../resources/assets/images/black160px.png';
 import { createStyles } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { useMessage } from '../context/MessageContext';
+import Logo from '../resources/assets/images/nouns.jpg';
 
 interface INounWrapperProps {
   Noun: any;
@@ -452,6 +449,23 @@ const HomePage: React.FC = () => {
               </button>
             </div>
           }
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '10px',
+          marginTop: '20px',
+          padding: '20px',
+        }}
+      >
+        <p>Artworks by Nouns DAO</p>
+        <img
+          src={Logo} // Replace with the actual image path
+          alt='Built with Unlimit'
+          style={{ maxWidth: '3%', height: 'auto' }}
         />
       </div>
     </Page>
