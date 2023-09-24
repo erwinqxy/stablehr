@@ -23,3 +23,7 @@ The company uses WalletConnect's Web3Modal v3 to connect the wallets of the empl
 7) Automated messages and email notifications sent to employees 
 
 ## Usage 
+
+
+## Additional Repo 
+Backend Repo: https://github.com/eugenetayyj/stable-be 
