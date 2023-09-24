@@ -7,6 +7,14 @@ import { FC, useRef, useEffect, useState } from "react";
 import crypto from "crypto-browserify";
 import { Page } from "../Page";
 import Logo from "../resources/assets/images/logo.svg";
+import OnrampLogo from "../resources/assets/title-icons/onramp.png";
+
+import Noun819 from "../resources/assets/nouns/Noun819.svg";
+import Noun815 from "../resources/assets/nouns/Noun815.svg";
+import Noun804 from "../resources/assets/nouns/Noun804.svg";
+import Noun801 from "../resources/assets/nouns/Noun801.svg";
+import Noun799 from "../resources/assets/nouns/Noun799.svg";
+import Noun796 from "../resources/assets/nouns/Noun796.svg";
 
 const OnrampPage: React.FC = () => {
   const [showIframe, setShowIframe] = useState(false);
@@ -61,18 +69,51 @@ const OnrampPage: React.FC = () => {
   return (
     <Page
       title={"Onramp"}
-      description={"Buy stablecoins with fiat."}
+      description={"Buy stablecoins with fiat"}
       docs={
         "https://docs.gatefi.com/docs/gatefi-docs/7p34n1uhrzlg8-hosted-mode-integration"
       }
+      icon={OnrampLogo}
     >
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
+          gap: 24,
         }}
       >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 24,
+          }}
+        >
+          <img
+            src={Noun801}
+            alt="Noun"
+            width={180}
+            style={{
+              borderRadius: 8,
+            }}
+          />
+          <img
+            src={Noun799}
+            alt="Noun"
+            width={180}
+            style={{
+              borderRadius: 8,
+            }}
+          />
+          <img
+            src={Noun796}
+            alt="Noun"
+            width={180}
+            style={{
+              borderRadius: 8,
+            }}
+          />
+        </div>
         <div
           style={{
             position: "relative",
@@ -92,6 +133,38 @@ const OnrampPage: React.FC = () => {
           ></div>
         </div>
         <div id="overlay-button"></div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 24,
+          }}
+        >
+          <img
+            src={Noun819}
+            alt="Noun"
+            width={180}
+            style={{
+              borderRadius: 8,
+            }}
+          />
+          <img
+            src={Noun815}
+            alt="Noun"
+            width={180}
+            style={{
+              borderRadius: 8,
+            }}
+          />
+          <img
+            src={Noun804}
+            alt="Noun"
+            width={180}
+            style={{
+              borderRadius: 8,
+            }}
+          />
+        </div>
       </div>
 
       {/* Additional Component */}
