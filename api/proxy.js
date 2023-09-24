@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 const CryptoJS = require("crypto-js");
 
-const secretKey = 'xsZHblNdQBBhgODHjQaVaGITtJSlTKEy'; // process.env.SECRET_KEY;
-const apiKey = 'tctRRucDSMZhFEyZSoZVkVluBuVkMMSE'; // process.env.API_KEY;
+const secretKey = 'wyTQMIIJZEAiBqWigFlndSjUaIfCdUyu'; // process.env.SECRET_KEY;
+const apiKey = 'yBYPHFKkfGgoxavPmiZzaAiNIKHsYnQt'; // process.env.API_KEY;
 
 // Hash the secret key with the data
 function calcAuthSigHash(data) {

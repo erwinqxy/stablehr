@@ -6,6 +6,8 @@ import { FC, useRef, useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import crypto from 'crypto-browserify';
 import { Page } from '../Page';
 import axios from 'axios';
+import Logo from '../resources/assets/images/1inch.png';
+
 
 const SwapPage: React.FC = () => {
   const [quoteData, setquoteData] = useState({
@@ -80,71 +82,87 @@ const SwapPage: React.FC = () => {
   }
 
   return (
-    <Page
-      title={'Swap'}
-      description={'Swap users with our SDK or Hosted Flows'}
-    >
+    <Page title={'Swap'} description={'Swap users with our SDK or Hosted Flows'}>
       <form onSubmit={handleGetQuote}>
-    <br />
-    <label>
-      Swap From: 
-      <input
-        type="text"
-        name="swapFrom"
-        value={quoteData.swapFrom}
-        onChange={handleSwapFromChange}
-      />
-    </label>
-    <br></br>
-    <label>
-      Swap To: 
-      <input
-        type="text"
-        name="swapTo"
-        value={quoteData.swapTo}
-        onChange={handleSwapToChange}
-      />
-    </label>
-    <br></br>
-    <label>
-      Amount: 
-      <input
-        type="text"
-        name="amount"
-        value={quoteData.amount}
-        onChange={handleAmountChange}
-      />
-    </label>
-    <br />
-    <button type="submit">Get Quote</button>
-  </form>
-  <br />
-  <form onSubmit={handleSwap}>
-    <br />
-    <label>
-      Sender Address: 
-      <input
-        type="text"
-        name="senderAddress"
-        value={swapData.senderAddress}
-        onChange={handleSenderAddChange}
-      />
-    </label>
-    <br></br>
-    <label>
-      Receiver Address: 
-      <input
-        type="text"
-        name="receiverAddress"
-        value={swapData.receiverAddress}
-        onChange={handleReceiverAddChange}
-      />
-    </label>
-    <br />
-    <button type='submit' disabled={isSwapDisabled} onClick={handleSwap}>Swap Now!</button>
-  </form>
-  </Page>
-);
+        <br />
+        <label>
+          Swap From:
+          <input
+            type='text'
+            name='swapFrom'
+            value={quoteData.swapFrom}
+            onChange={handleSwapFromChange}
+          />
+        </label>
+        <br></br>
+        <label>
+          Swap To:
+          <input
+            type='text'
+            name='swapTo'
+            value={quoteData.swapTo}
+            onChange={handleSwapToChange}
+          />
+        </label>
+        <br></br>
+        <label>
+          Amount:
+          <input
+            type='text'
+            name='amount'
+            value={quoteData.amount}
+            onChange={handleAmountChange}
+          />
+        </label>
+        <br />
+        <button type='submit'>Get Quote</button>
+      </form>
+      <br />
+      <form onSubmit={handleSwap}>
+        <br />
+        <label>
+          Sender Address:
+          <input
+            type='text'
+            name='senderAddress'
+            value={swapData.senderAddress}
+            onChange={handleSenderAddChange}
+          />
+        </label>
+        <br></br>
+        <label>
+          Receiver Address:
+          <input
+            type='text'
+            name='receiverAddress'
+            value={swapData.receiverAddress}
+            onChange={handleReceiverAddChange}
+          />
+        </label>
+        <br />
+        <button type='submit' disabled={isSwapDisabled} onClick={handleSwap}>
+          Swap Now!
+        </button>
+      </form>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '10px',
+          marginTop: '20px',
+          padding: '20px',
+        }}
+      >
+        <p>Built with OneInc</p>
+        <img
+          src={Logo} // Replace with the actual image path
+          alt='Built with OneInch'
+          style={{ maxWidth: '8%', height: 'auto' }}
+        />
+      </div>
+    </Page>
+  );
 };
 
 export default SwapPage;

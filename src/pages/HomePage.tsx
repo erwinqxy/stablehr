@@ -11,6 +11,7 @@ import BlackGlassesIcon from "../resources/assets/images/black160px.png";
 import { createStyles } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useMessage } from "../context/MessageContext";
+import Logo from '../resources/assets/images/nouns.jpg';
 
 interface INounWrapperProps {
   Noun: JSX.Element;
@@ -198,34 +199,34 @@ const HomePage: React.FC = () => {
 
   return (
     <Page
-      title="Home"
-      description="Send cross-border payments to your employees cheaply, quickly, and securely"
+      title='Home'
+      description='Send cross-border payments to your employees cheaply, quickly, and securely'
     >
       <NounWrapper
-        Noun={<img src={Noun123} alt="noun hero" width={450} />}
+        Noun={<img src={Noun123} alt='noun hero' width={450} />}
         description={
           <div
             style={{
               minWidth: 400,
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              fontFamily: "CustomFont",
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              fontFamily: 'CustomFont',
             }}
           >
             <h1
               style={{
-                fontFamily: "LondrinaSolidShadow",
+                fontFamily: 'LondrinaSolidShadow',
                 fontSize: 56,
               }}
             >
               <span
                 style={{
-                  color: "#26D9A3",
+                  color: '#26D9A3',
                 }}
               >
                 Payrolls
-              </span>{" "}
+              </span>{' '}
               have never been easier.
             </h1>
             <p>Onramp • Swap • Send • Offramp</p>
@@ -233,7 +234,7 @@ const HomePage: React.FC = () => {
               Get Started
               <img
                 src={BlackGlassesIcon}
-                alt="black glasses"
+                alt='black glasses'
                 width={32}
                 style={{
                   marginLeft: 12,
@@ -246,11 +247,11 @@ const HomePage: React.FC = () => {
       <Graph />
       <div
         style={{
-          fontFamily: "LondrinaSolid",
-          width: "fit-content",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
+          fontFamily: 'LondrinaSolid',
+          width: 'fit-content',
+          margin: '0 auto',
+          display: 'flex',
+          flexDirection: 'column',
           gap: 64,
           paddingBottom: 100,
         }}
@@ -267,38 +268,38 @@ const HomePage: React.FC = () => {
           description={
             <div
               style={{
-                textAlign: "center",
-                fontFamily: "CustomFont",
+                textAlign: 'center',
+                fontFamily: 'CustomFont',
               }}
             >
               <h1
                 style={{
-                  fontFamily: "LondrinaSolidShadow",
+                  fontFamily: 'LondrinaSolidShadow',
                   fontSize: 48,
                 }}
               >
-                Onramp{" "}
+                Onramp{' '}
                 <span
                   style={{
-                    color: "#26D9A3",
+                    color: '#26D9A3',
                   }}
                 >
                   fiat
-                </span>{" "}
+                </span>{' '}
                 with a few clicks
               </h1>
               <p>Exchange fiat currency for cryptocurrencies</p>
-              <Link to="/onramp">
+              <Link to='/onramp'>
                 <button
                   className={cx(classes.button)}
                   style={{
-                    width: "40%",
+                    width: '40%',
                   }}
                 >
                   Explore Onramp
                   <img
                     src={BlackGlassesIcon}
-                    alt="black glasses"
+                    alt='black glasses'
                     width={32}
                     style={{
                       marginLeft: 12,
@@ -321,45 +322,45 @@ const HomePage: React.FC = () => {
           description={
             <div
               style={{
-                textAlign: "center",
-                fontFamily: "CustomFont",
+                textAlign: 'center',
+                fontFamily: 'CustomFont',
               }}
             >
               <h1
                 style={{
-                  fontFamily: "LondrinaSolidShadow",
+                  fontFamily: 'LondrinaSolidShadow',
                   fontSize: 48,
                 }}
               >
-                Discover the most{" "}
+                Discover the most{' '}
                 <span
                   style={{
-                    color: "#26D9A3",
+                    color: '#26D9A3',
                   }}
                 >
                   efficient
-                </span>{" "}
+                </span>{' '}
                 path for token swaps
               </h1>
               <p
                 style={{
-                  padding: "0 80px",
+                  padding: '0 80px',
                 }}
               >
-                Enables splits between different protocols and gas optimization
-                to ensure the best possible exchange rates.
+                Enables splits between different protocols and gas optimization to ensure
+                the best possible exchange rates.
               </p>
-              <Link to="/swap">
+              <Link to='/swap'>
                 <button
                   className={cx(classes.button)}
                   style={{
-                    width: "30%",
+                    width: '30%',
                   }}
                 >
                   Explore Swap
                   <img
                     src={BlackGlassesIcon}
-                    alt="black glasses"
+                    alt='black glasses'
                     width={32}
                     style={{
                       marginLeft: 12,
@@ -369,7 +370,7 @@ const HomePage: React.FC = () => {
               </Link>
             </div>
           }
-          position="right"
+          position='right'
         />
         <NounWrapper
           Noun={
@@ -383,28 +384,28 @@ const HomePage: React.FC = () => {
           description={
             <div
               style={{
-                textAlign: "center",
-                fontFamily: "CustomFont",
+                textAlign: 'center',
+                fontFamily: 'CustomFont',
               }}
             >
               <h1
                 style={{
-                  fontFamily: "LondrinaSolidShadow",
+                  fontFamily: 'LondrinaSolidShadow',
                   fontSize: 48,
                 }}
               >
-                Connect with employees regarding{" "}
+                Connect with employees regarding{' '}
                 <span
                   style={{
-                    color: "#26D9A3",
+                    color: '#26D9A3',
                   }}
                 >
                   transactions
-                </span>{" "}
+                </span>{' '}
               </h1>
               <p
                 style={{
-                  padding: "0 80px",
+                  padding: '0 80px',
                 }}
               >
                 Integrated Web3 messaging system over XMTP
@@ -412,14 +413,14 @@ const HomePage: React.FC = () => {
               <button
                 className={cx(classes.button)}
                 style={{
-                  width: "40%",
+                  width: '40%',
                 }}
                 onClick={openInbox}
               >
                 Open Message Inbox
                 <img
                   src={BlackGlassesIcon}
-                  alt="black glasses"
+                  alt='black glasses'
                   width={32}
                   style={{
                     marginLeft: 12,
@@ -428,6 +429,23 @@ const HomePage: React.FC = () => {
               </button>
             </div>
           }
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '10px',
+          marginTop: '20px',
+          padding: '20px',
+        }}
+      >
+        <p>Artworks by Nouns DAO</p>
+        <img
+          src={Logo} // Replace with the actual image path
+          alt='Built with Unlimit'
+          style={{ maxWidth: '3%', height: 'auto' }}
         />
       </div>
     </Page>
