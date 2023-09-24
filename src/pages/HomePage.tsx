@@ -4,8 +4,9 @@ import { ReactComponent as Noun849 } from "../resources/assets/images/noun849.sv
 import { ReactComponent as Noun837 } from "../resources/assets/images/noun837.svg";
 import Noun123 from "../resources/assets/images/noun123.png";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import fxData from "../resources/data/fx.json";
+import nounIpfs from "../resources/data/ipfs_files.json";
 import { ResponsiveLine } from "@nivo/line";
 import BlackGlassesIcon from "../resources/assets/images/black160px.png";
 import { createStyles } from "@mantine/core";
@@ -13,7 +14,7 @@ import { Link } from "react-router-dom";
 import { useMessage } from "../context/MessageContext";
 
 interface INounWrapperProps {
-  Noun: JSX.Element;
+  Noun: any;
   description: any;
   position?: "left" | "right";
 }
@@ -187,7 +188,46 @@ const HomePage: React.FC = () => {
   const { classes, cx } = useStyles();
   const { openInbox } = useMessage();
 
-  const getStarted = () => {
+  const [nouns, setNouns] = useState<Array<SVGSVGElement> | null>(null);
+
+  function shuffleArray(array: Array<string>) {
+    for (let i = array.length - 1; i >= 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements to shuffle
+    }
+    return array;
+  }
+
+  useEffect(() => {
+    async function fetchIpfsNouns() {
+      const addrArray = shuffleArray(nounIpfs.noun).splice(0, 3);
+      const resArray: Array<any> = [];
+
+      Promise.all(addrArray.map(addr => fetch(addr).then(res => res.text())))
+        .then(responses => {
+          for (const res of responses) {
+            const holder = document.createElement("div");
+            holder.innerHTML = res;
+            const svg = holder.querySelector("svg");
+
+            if (svg) {
+              svg.style.borderRadius = "8px";
+              svg.style.minWidth = "320px";
+            }
+            resArray.push(svg);
+          }
+
+          console.log("RES ARRAY", resArray);
+        })
+        .catch(err => {
+          console.error(`Error fetching Noun from IPFS`, err);
+        });
+    }
+
+    fetchIpfsNouns();
+  }, []);
+
+  const scrollToGraph = () => {
     var elmntToView = document.getElementById("graph");
     if (elmntToView) {
       elmntToView.scrollIntoView({
@@ -229,7 +269,7 @@ const HomePage: React.FC = () => {
               have never been easier.
             </h1>
             <p>Onramp • Swap • Send • Offramp</p>
-            <button className={cx(classes.button)} onClick={getStarted}>
+            <button className={cx(classes.button)} onClick={scrollToGraph}>
               Get Started
               <img
                 src={BlackGlassesIcon}
@@ -256,14 +296,7 @@ const HomePage: React.FC = () => {
         }}
       >
         <NounWrapper
-          Noun={
-            <Noun852
-              style={{
-                borderRadius: 8,
-                minWidth: 320,
-              }}
-            />
-          }
+          Noun={nouns?.[0]}
           description={
             <div
               style={{
