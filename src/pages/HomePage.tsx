@@ -9,6 +9,7 @@ import fxData from "../resources/data/fx.json";
 import { ResponsiveLine } from "@nivo/line";
 import BlackGlassesIcon from "../resources/assets/images/black160px.png";
 import { createStyles } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 interface INounWrapperProps {
   Noun: JSX.Element;
@@ -25,8 +26,9 @@ const useStyles = createStyles((theme, _params) => {
       background: "#ff0e0e",
       padding: "14px",
       cursor: "pointer",
-      marginTop: 40,
+      marginTop: 30,
       transition: "all 0.3s",
+      fontFamily: "CustomFont",
 
       "&:hover": {
         transform: "translateY(-2px)",
@@ -115,9 +117,10 @@ const Graph: React.FC = () => {
   return (
     <div
       style={{
-        marginTop: 100,
+        paddingTop: 100,
         marginBottom: 100,
       }}
+      id="graph"
     >
       <p
         style={{
@@ -182,6 +185,15 @@ const Graph: React.FC = () => {
 const HomePage: React.FC = () => {
   const { classes, cx } = useStyles();
 
+  const getStarted = () => {
+    var elmntToView = document.getElementById("graph");
+    if (elmntToView) {
+      elmntToView.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <Page
       title="Home"
@@ -215,7 +227,7 @@ const HomePage: React.FC = () => {
               have never been easier.
             </h1>
             <p>Onramp • Swap • Send • Offramp</p>
-            <button className={cx(classes.button)}>
+            <button className={cx(classes.button)} onClick={getStarted}>
               Get Started
               <img
                 src={BlackGlassesIcon}
@@ -238,6 +250,7 @@ const HomePage: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           gap: 64,
+          paddingBottom: 100,
         }}
       >
         <NounWrapper
@@ -245,7 +258,7 @@ const HomePage: React.FC = () => {
             <Noun852
               style={{
                 borderRadius: 8,
-                alignSelf: "flex-start",
+                minWidth: 320,
               }}
             />
           }
@@ -253,6 +266,7 @@ const HomePage: React.FC = () => {
             <div
               style={{
                 textAlign: "center",
+                fontFamily: "CustomFont",
               }}
             >
               <h1
@@ -271,18 +285,25 @@ const HomePage: React.FC = () => {
                 </span>{" "}
                 with a few clicks
               </h1>
-              <p>Onramp • Swap • Send • Offramp</p>
-              <button className={cx(classes.button)}>
-                Get Started
-                <img
-                  src={BlackGlassesIcon}
-                  alt="black glasses"
-                  width={32}
+              <p>Exchange fiat currency for cryptocurrencies</p>
+              <Link to="/onramp">
+                <button
+                  className={cx(classes.button)}
                   style={{
-                    marginLeft: 12,
+                    width: "40%",
                   }}
-                />
-              </button>
+                >
+                  Explore Onramp
+                  <img
+                    src={BlackGlassesIcon}
+                    alt="black glasses"
+                    width={32}
+                    style={{
+                      marginLeft: 12,
+                    }}
+                  />
+                </button>
+              </Link>
             </div>
           }
         />
@@ -291,17 +312,59 @@ const HomePage: React.FC = () => {
             <Noun849
               style={{
                 borderRadius: 8,
+                minWidth: 320,
               }}
             />
           }
           description={
             <div
               style={{
-                minWidth: 320,
                 textAlign: "center",
+                fontFamily: "CustomFont",
               }}
             >
-              <p>Insert text here</p>
+              <h1
+                style={{
+                  fontFamily: "LondrinaSolidShadow",
+                  fontSize: 48,
+                }}
+              >
+                Discover the most{" "}
+                <span
+                  style={{
+                    color: "#26D9A3",
+                  }}
+                >
+                  efficient
+                </span>{" "}
+                path for token swaps
+              </h1>
+              <p
+                style={{
+                  padding: "0 80px",
+                }}
+              >
+                Enables splits between different protocols and gas optimization
+                to ensure the best possible exchange rates.
+              </p>
+              <Link to="/swap">
+                <button
+                  className={cx(classes.button)}
+                  style={{
+                    width: "30%",
+                  }}
+                >
+                  Explore Swap
+                  <img
+                    src={BlackGlassesIcon}
+                    alt="black glasses"
+                    width={32}
+                    style={{
+                      marginLeft: 12,
+                    }}
+                  />
+                </button>
+              </Link>
             </div>
           }
           position="right"
@@ -311,17 +374,57 @@ const HomePage: React.FC = () => {
             <Noun837
               style={{
                 borderRadius: 8,
+                minWidth: 320,
               }}
             />
           }
           description={
             <div
               style={{
-                minWidth: 320,
                 textAlign: "center",
+                fontFamily: "CustomFont",
               }}
             >
-              <p>Insert text here</p>
+              <h1
+                style={{
+                  fontFamily: "LondrinaSolidShadow",
+                  fontSize: 48,
+                }}
+              >
+                Connect with employees regarding{" "}
+                <span
+                  style={{
+                    color: "#26D9A3",
+                  }}
+                >
+                  transactions
+                </span>{" "}
+              </h1>
+              <p
+                style={{
+                  padding: "0 80px",
+                }}
+              >
+                Integrated Web3 messaging system over XMTP
+              </p>
+              <Link to="/messages">
+                <button
+                  className={cx(classes.button)}
+                  style={{
+                    width: "35%",
+                  }}
+                >
+                  Explore Message
+                  <img
+                    src={BlackGlassesIcon}
+                    alt="black glasses"
+                    width={32}
+                    style={{
+                      marginLeft: 12,
+                    }}
+                  />
+                </button>
+              </Link>
             </div>
           }
         />
