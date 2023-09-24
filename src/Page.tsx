@@ -25,6 +25,10 @@ const useStyles = createStyles((theme, _params) => {
       "@media (max-width: 520px)": {
         fontSize: 28,
       },
+
+      "& img": {
+        marginRight: 12,
+      },
     },
 
     highlight: {
@@ -47,9 +51,16 @@ export interface DashboardProps {
   title: string;
   description?: string;
   docs?: string;
+  icon?: any;
 }
 
-export function Page({ children, title, description, docs }: DashboardProps) {
+export function Page({
+  children,
+  title,
+  description,
+  docs,
+  icon,
+}: DashboardProps) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const matches = useMediaQuery(`(max-width: ${theme.breakpoints.lg}px)`);
@@ -65,7 +76,17 @@ export function Page({ children, title, description, docs }: DashboardProps) {
       {matches && <ConnectButton />}
       <Container style={{ flex: 1, marginTop: 30 }}>
         <Box mb={50} style={{ textAlign: "center" }}>
-          <Title className={classes.title}>{title}</Title>
+          <Title className={classes.title}>
+            {icon && (
+              <img
+                src={icon}
+                alt="noun"
+                width={48}
+                style={{ borderRadius: 8 }}
+              />
+            )}
+            {title}
+          </Title>
           <Container p={0} size={650}>
             <Text size="lg" color="dimmed" className={classes.description}>
               {description}

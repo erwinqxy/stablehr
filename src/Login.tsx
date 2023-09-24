@@ -1,83 +1,80 @@
-import {
-  createStyles,
-  Title,
-  Text,
-  Container,
-  Flex,
-  Button,
-} from "@mantine/core";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import WalletConnectButton from "./WalletConnectButton";
-import Passkey from "./Passkey";
-import logo from "./resources/assets/images/stablehr_logo.png";
-import { useState } from "react";
+import { createStyles, Title, Text, Container, Flex, Button } from '@mantine/core';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import WalletConnectButton from './WalletConnectButton';
+import Passkey from './Passkey';
+import logo from './resources/assets/images/stablehr_logo.png';
+import hehe from './resources/assets/images/nounsss.jpeg';
+import { useState } from 'react';
 
-const useStyles = createStyles(theme => ({
+const useStyles = createStyles((theme) => ({
   wrapper: {
-    position: "relative",
-    height: "100vh",
-    background:
-      "radial-gradient(circle, rgba(24,22,63,1) 0%, rgba(27,24,65,1) 35%);",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    position: 'relative',
+    height: '100vh',
+    // background:
+    //   "radial-gradient(circle, rgba(24,22,63,1) 0%, rgba(27,24,65,1) 35%);",
+    backgroundImage: '  url(' + hehe + ')',
+    backgroundRepeat: 'repeat',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
 
-    "@media (max-width: 755px)": {
+    '@media (max-width: 755px)': {
       paddingTop: 80,
       paddingBottom: 60,
     },
   },
 
   modal: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     gap: 12,
     minWidth: 320,
-    background: "#fff",
-    padding: "14px 30px",
+    background: '#fff',
+    padding: '14px 30px',
     borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
     boxShadow:
-      "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
+      'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px',
+    paddingBottom: '30px',
   },
 
   title: {
-    textAlign: "center",
+    textAlign: 'center',
     fontWeight: 800,
     fontSize: 40,
     letterSpacing: -1,
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     marginBottom: theme.spacing.xs,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
-    "@media (max-width: 520px)": {
+    '@media (max-width: 520px)': {
       fontSize: 28,
     },
   },
 
   highlight: {
-    color: "rgb(201, 247, 58)",
+    color: 'rgb(201, 247, 58)',
   },
 
   logo: {
-    position: "absolute",
-    top: "5%",
-    left: "50%",
-    marginLeft: "-120px",
+    position: 'absolute',
+    top: '5%',
+    left: '50%',
+    marginLeft: '-120px',
   },
 }));
 
 export function Login() {
   const { classes } = useStyles();
 
-  const [wallet, setWallet] = useState<"walletconnect" | "web3auth">(
-    "walletconnect"
-  );
+  const [wallet, setWallet] = useState<'walletconnect' | 'web3auth'>('walletconnect');
 
   return (
     <div className={classes.wrapper}>
-      <img className={classes.logo} src={logo} alt="Logo" width={240} />
       <div className={classes.modal}>
+        <img src={logo} alt='Logo' width={240} />
         <p
           style={{
             margin: 0,
@@ -86,11 +83,27 @@ export function Login() {
           Login with WalletConnect
         </p>
         <div>
-          <WalletConnectButton label="WalletConnect" />
+          <WalletConnectButton label='WalletConnect' />
         </div>
-        <p>
-          Not an existing Web3 user? <ConnectButton label="Web3Auth" />
-        </p>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 8,
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+            }}
+          >
+            Not an existing Web3 user?{' '}
+          </p>
+          <ConnectButton label='Web3Auth' />
+        </div>
       </div>
       {/* <Flex
         justify={"center"}

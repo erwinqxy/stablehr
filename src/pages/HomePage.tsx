@@ -1,37 +1,38 @@
-import { Page } from '../Page';
+import { Page } from "../Page";
 
-import React, { useEffect, useState } from 'react';
-import fxData from '../resources/data/fx.json';
-import nounIpfs from '../resources/data/ipfs_files.json';
-import { ResponsiveLine } from '@nivo/line';
-import BlackGlassesIcon from '../resources/assets/images/black160px.png';
-import { createStyles } from '@mantine/core';
-import { Link } from 'react-router-dom';
-import { useMessage } from '../context/MessageContext';
-import Logo from '../resources/assets/images/nouns.jpg';
+import React, { useEffect, useState } from "react";
+import fxData from "../resources/data/fx.json";
+import nounIpfs from "../resources/data/ipfs_files.json";
+import { ResponsiveLine } from "@nivo/line";
+import BlackGlassesIcon from "../resources/assets/images/black160px.png";
+import { createStyles } from "@mantine/core";
+import { Link } from "react-router-dom";
+import { useMessage } from "../context/MessageContext";
+import Logo from "../resources/assets/images/nouns.jpg";
+import HomeLogo from "../resources/assets/title-icons/home.png";
 
 interface INounWrapperProps {
   Noun: any;
   description: any;
-  position?: 'left' | 'right';
+  position?: "left" | "right";
   height?: string;
 }
 
 const useStyles = createStyles((theme, _params) => {
   return {
     button: {
-      alignSelf: 'center',
+      alignSelf: "center",
       borderRadius: 8,
-      width: '80%',
-      background: '#ff0e0e',
-      padding: '14px',
-      cursor: 'pointer',
+      width: "80%",
+      background: "#ff0e0e",
+      padding: "14px",
+      cursor: "pointer",
       marginTop: 30,
-      transition: 'all 0.3s',
-      fontFamily: 'CustomFont',
+      transition: "all 0.3s",
+      fontFamily: "CustomFont",
 
-      '&:hover': {
-        transform: 'translateY(-2px)',
+      "&:hover": {
+        transform: "translateY(-2px)",
       },
     },
   };
@@ -39,7 +40,7 @@ const useStyles = createStyles((theme, _params) => {
 
 const FxRateChart: React.FC = () => {
   const data = fxData.observations.map(({ FXUSDCAD, d }) => ({
-    x: d.replaceAll('-', '/'),
+    x: d.replaceAll("-", "/"),
     y: Number(FXUSDCAD.v),
   }));
 
@@ -47,32 +48,32 @@ const FxRateChart: React.FC = () => {
     <ResponsiveLine
       data={[
         {
-          id: 'USD/CAD',
-          color: 'hsl(162, 70%, 50%)',
+          id: "USD/CAD",
+          color: "hsl(162, 70%, 50%)",
           data,
         },
       ]}
-      colors='hsl(162, 70%, 50%)'
+      colors="hsl(162, 70%, 50%)"
       enableArea
       areaOpacity={0.1}
       margin={{ top: 40, left: 58, bottom: 10 }}
       xScale={{
-        type: 'time',
-        format: '%Y/%m/%d',
+        type: "time",
+        format: "%Y/%m/%d",
         useUTC: false,
-        precision: 'day',
+        precision: "day",
       }}
-      xFormat='time:%b %d, %Y'
+      xFormat="time:%b %d, %Y"
       yScale={{
-        type: 'linear',
-        min: 'auto',
+        type: "linear",
+        min: "auto",
       }}
       axisBottom={null}
       axisLeft={{
         tickSize: 0,
         tickPadding: 24,
-        format: (value) =>
-          Number(value).toLocaleString('en', {
+        format: value =>
+          Number(value).toLocaleString("en", {
             minimumFractionDigits: 3,
             maximumFractionDigits: 3,
           }),
@@ -88,18 +89,18 @@ const FxRateChart: React.FC = () => {
 const NounWrapper: React.FC<INounWrapperProps> = ({
   Noun,
   description,
-  position = 'left',
+  position = "left",
   height,
 }) => {
   return (
     <div
       style={{
-        display: 'flex',
+        display: "flex",
         gap: 48,
-        width: '100%',
+        width: "100%",
       }}
     >
-      {position === 'left' ? (
+      {position === "left" ? (
         <>
           <img
             src={Noun}
@@ -108,7 +109,7 @@ const NounWrapper: React.FC<INounWrapperProps> = ({
               minWidth: 320,
               maxHeight: height || 320,
             }}
-            alt='Noun'
+            alt="Noun"
           />
           {description}
         </>
@@ -122,7 +123,7 @@ const NounWrapper: React.FC<INounWrapperProps> = ({
               minWidth: 320,
               maxHeight: 320,
             }}
-            alt='Noun'
+            alt="Noun"
           />
         </>
       )}
@@ -137,7 +138,7 @@ const Graph: React.FC = () => {
         paddingTop: 100,
         marginBottom: 100,
       }}
-      id='graph'
+      id="graph"
     >
       <p
         style={{
@@ -145,20 +146,21 @@ const Graph: React.FC = () => {
           fontSize: 18,
         }}
       >
-        Checkout the exchange rate between <span style={{ fontWeight: 600 }}>USDC</span>{' '}
-        and <span style={{ fontWeight: 600 }}>QCAD</span>
+        Checkout the exchange rate between{" "}
+        <span style={{ fontWeight: 600 }}>USDC</span> and{" "}
+        <span style={{ fontWeight: 600 }}>QCAD</span>
       </p>
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <h6
           style={{
             fontSize: 24,
-            margin: '0 0 14px',
+            margin: "0 0 14px",
           }}
         >
           USDC / QCAD Chart
@@ -168,7 +170,7 @@ const Graph: React.FC = () => {
             fontSize: 12,
           }}
         >
-          1 USDC ={' '}
+          1 USDC ={" "}
           <span
             style={{
               fontWeight: 400,
@@ -176,20 +178,20 @@ const Graph: React.FC = () => {
             }}
           >
             1.3464
-          </span>{' '}
+          </span>{" "}
           QCAD
         </p>
       </div>
       <div
         style={{
-          width: '100%',
+          width: "100%",
           height: 300,
           marginBottom: 40,
-          background: '#fff',
+          background: "#fff",
           borderRadius: 8,
           paddingLeft: 4,
-          borderBottom: '4px #26D9A3 solid',
-          borderRight: '4px #26D9A3 solid',
+          borderBottom: "4px #26D9A3 solid",
+          borderRight: "4px #26D9A3 solid",
         }}
       >
         <FxRateChart />
@@ -227,47 +229,48 @@ const HomePage: React.FC = () => {
   }, []);
 
   const scrollToGraph = () => {
-    var elmntToView = document.getElementById('graph');
+    var elmntToView = document.getElementById("graph");
     if (elmntToView) {
       elmntToView.scrollIntoView({
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
 
   return (
     <Page
-      title='Home'
-      description='Send cross-border payments to your employees cheaply, quickly, and securely'
+      title="Home"
+      description="Send cross-border payments to your employees cheaply, quickly, and securely"
+      icon={HomeLogo}
     >
       <NounWrapper
-        height={'100%'}
+        height={"100%"}
         Noun={
-          'https://bafybeicvnvvy7ush5gtclhli3klbshzlgsg7douefia3mvzcpmhtrkvsye.ipfs.w3s.link/noun123.png'
+          "https://bafybeicvnvvy7ush5gtclhli3klbshzlgsg7douefia3mvzcpmhtrkvsye.ipfs.w3s.link/noun123.png"
         }
         description={
           <div
             style={{
               minWidth: 400,
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              fontFamily: 'CustomFont',
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              fontFamily: "CustomFont",
             }}
           >
             <h1
               style={{
-                fontFamily: 'LondrinaSolidShadow',
+                fontFamily: "LondrinaSolidShadow",
                 fontSize: 56,
               }}
             >
               <span
                 style={{
-                  color: '#26D9A3',
+                  color: "#26D9A3",
                 }}
               >
-                Payrolls
-              </span>{' '}
+                Payments
+              </span>{" "}
               have never been easier.
             </h1>
             <p>Onramp • Swap • Send • Offramp</p>
@@ -275,7 +278,7 @@ const HomePage: React.FC = () => {
               Get Started
               <img
                 src={BlackGlassesIcon}
-                alt='black glasses'
+                alt="black glasses"
                 width={32}
                 style={{
                   marginLeft: 12,
@@ -288,11 +291,11 @@ const HomePage: React.FC = () => {
       <Graph />
       <div
         style={{
-          fontFamily: 'LondrinaSolid',
-          width: 'fit-content',
-          margin: '0 auto',
-          display: 'flex',
-          flexDirection: 'column',
+          fontFamily: "LondrinaSolid",
+          width: "fit-content",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
           gap: 64,
           paddingBottom: 100,
         }}
@@ -302,38 +305,38 @@ const HomePage: React.FC = () => {
           description={
             <div
               style={{
-                textAlign: 'center',
-                fontFamily: 'CustomFont',
+                textAlign: "center",
+                fontFamily: "CustomFont",
               }}
             >
               <h1
                 style={{
-                  fontFamily: 'LondrinaSolidShadow',
+                  fontFamily: "LondrinaSolidShadow",
                   fontSize: 48,
                 }}
               >
-                Onramp{' '}
+                Onramp{" "}
                 <span
                   style={{
-                    color: '#26D9A3',
+                    color: "#26D9A3",
                   }}
                 >
                   fiat
-                </span>{' '}
+                </span>{" "}
                 with a few clicks
               </h1>
               <p>Exchange fiat currency for cryptocurrencies</p>
-              <Link to='/onramp'>
+              <Link to="/onramp">
                 <button
                   className={cx(classes.button)}
                   style={{
-                    width: '40%',
+                    width: "40%",
                   }}
                 >
                   Explore Onramp
                   <img
                     src={BlackGlassesIcon}
-                    alt='black glasses'
+                    alt="black glasses"
                     width={32}
                     style={{
                       marginLeft: 12,
@@ -349,45 +352,45 @@ const HomePage: React.FC = () => {
           description={
             <div
               style={{
-                textAlign: 'center',
-                fontFamily: 'CustomFont',
+                textAlign: "center",
+                fontFamily: "CustomFont",
               }}
             >
               <h1
                 style={{
-                  fontFamily: 'LondrinaSolidShadow',
+                  fontFamily: "LondrinaSolidShadow",
                   fontSize: 48,
                 }}
               >
-                Discover the most{' '}
+                Discover the most{" "}
                 <span
                   style={{
-                    color: '#26D9A3',
+                    color: "#26D9A3",
                   }}
                 >
                   efficient
-                </span>{' '}
+                </span>{" "}
                 path for token swaps
               </h1>
               <p
                 style={{
-                  padding: '0 80px',
+                  padding: "0 80px",
                 }}
               >
-                Enables splits between different protocols and gas optimization to ensure
-                the best possible exchange rates.
+                Enables splits between different protocols and gas optimization
+                to ensure the best possible exchange rates.
               </p>
-              <Link to='/swap'>
+              <Link to="/swap">
                 <button
                   className={cx(classes.button)}
                   style={{
-                    width: '30%',
+                    width: "30%",
                   }}
                 >
                   Explore Swap
                   <img
                     src={BlackGlassesIcon}
-                    alt='black glasses'
+                    alt="black glasses"
                     width={32}
                     style={{
                       marginLeft: 12,
@@ -397,35 +400,35 @@ const HomePage: React.FC = () => {
               </Link>
             </div>
           }
-          position='right'
+          position="right"
         />
         <NounWrapper
           Noun={selectedItems[2]}
           description={
             <div
               style={{
-                textAlign: 'center',
-                fontFamily: 'CustomFont',
+                textAlign: "center",
+                fontFamily: "CustomFont",
               }}
             >
               <h1
                 style={{
-                  fontFamily: 'LondrinaSolidShadow',
+                  fontFamily: "LondrinaSolidShadow",
                   fontSize: 48,
                 }}
               >
-                Connect with employees regarding{' '}
+                Connect with employees regarding{" "}
                 <span
                   style={{
-                    color: '#26D9A3',
+                    color: "#26D9A3",
                   }}
                 >
                   transactions
-                </span>{' '}
+                </span>{" "}
               </h1>
               <p
                 style={{
-                  padding: '0 80px',
+                  padding: "0 80px",
                 }}
               >
                 Integrated Web3 messaging system over XMTP
@@ -433,14 +436,14 @@ const HomePage: React.FC = () => {
               <button
                 className={cx(classes.button)}
                 style={{
-                  width: '40%',
+                  width: "40%",
                 }}
                 onClick={openInbox}
               >
                 Open Message Inbox
                 <img
                   src={BlackGlassesIcon}
-                  alt='black glasses'
+                  alt="black glasses"
                   width={32}
                   style={{
                     marginLeft: 12,
@@ -453,19 +456,19 @@ const HomePage: React.FC = () => {
       </div>
       <div
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          marginTop: '20px',
-          padding: '20px',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          marginTop: "20px",
+          padding: "20px",
         }}
       >
         <p>Artworks by Nouns DAO</p>
         <img
           src={Logo} // Replace with the actual image path
-          alt='Built with Unlimit'
-          style={{ maxWidth: '3%', height: 'auto' }}
+          alt="Built with Unlimit"
+          style={{ maxWidth: "3%", height: "auto" }}
         />
       </div>
     </Page>
