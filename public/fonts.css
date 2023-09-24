@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("./fonts/Londrina_Solid/LondrinaSolid-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "LondrinaSolidShadow";
+  src: url("./fonts/Londrina_Solid/LondrinaSolid-Regular.ttf")
+    format("truetype");
+}

@@ -10,6 +10,7 @@
     "@mantine/core": "^5.10.2",
     "@mantine/hooks": "^5.10.2",
     "@mantine/notifications": "^5.10.2",
+    "@nivo/line": "^0.83.0",
     "@noble/secp256k1": "^2.0.0",
     "@rainbow-me/rainbowkit": "^1.0.5",
     "@testing-library/jest-dom": "^5.16.5",
