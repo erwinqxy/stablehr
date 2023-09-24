@@ -1,0 +1,15 @@
+{"addresses": [
+    {"name": "Adam",
+    "address": "0xdd2fd4581271e230360230f9337d5c0430bf44c0"},
+    {"name": "Vaishnav",
+    "address": "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270"},
+    {"name": "Heinz",
+    "address": "0x51bfacfce67821ec05d3c9bc9a8bc8300fb29564"},
+    {"name": "Eugene", "address": "0xd70250731a72c33bfb93016e3d1f0ca160df7e42"},
+    {"name": "Lola", "address": "0xf89d7b9c864f589bbf53a82105107622b35eaa40"},
+    {"name": "Jackson", "address": "0x71956a1cd5a4233177f7bf9a2d5778851e201934"},
+    {"name": "Jenny", "address":"0x72a53cdbbcc1b9efa39c834a540550e23463aacb"},
+    {"name": "John", "address": "0x57571d366a00b3389b0adf30a114bc7da7a11580"},
+    {"name": "Harpreet", "address": "0xdb2c3f64d6ecf0378ec267abfcdae98cea4e55b6"}
+]
+}
