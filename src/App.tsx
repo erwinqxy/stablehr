@@ -15,8 +15,6 @@ const links = [
   { path: '/Onramp', label: 'Onramp', element: <Onramp /> },
   { path: '/Swap', label: 'Swap', element: <SwapPage /> },
   { path: '/Inbox', label: 'Inbox', element: <Onramp /> },
-  { path: '/Messages', label: 'Messages', element: <Onramp /> },
-
   // { path: '/Experiment', label: 'Experiment', element: <Experiment/> },
 ];
 

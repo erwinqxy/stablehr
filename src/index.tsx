@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { MantineProvider } from '@mantine/core';
 import ZeroDevWrapper from './ZeroDevWrapper';
 import { NotificationsProvider } from '@mantine/notifications';
+import './index.css';
+import InboxPage from './InboxPage-text';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
