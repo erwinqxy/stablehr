@@ -12,7 +12,10 @@ const chains = [mainnet, arbitrum]
 const wagmiConfig = defaultWagmiConfig({ chains, projectId, appName: 'Web3Modal' })
 
 // 3. Create modal
-createWeb3Modal({ wagmiConfig, projectId, chains })
+createWeb3Modal({ wagmiConfig, projectId, chains, 
+                    themeVariables: {
+                      "--w3m-border-radius-master": "2px",
+                    } })
 
 
 type WalletConnectButtonProps = {
