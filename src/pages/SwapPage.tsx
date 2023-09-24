@@ -2,19 +2,9 @@
 /* eslint-disable no-useless-concat */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
-import { getQuote } from "../1inch";
 import { Page } from '../Page';
-import { 
-  pk,
-  authKey,
-  ethNetworkRPC,
-  maticPolyAddress,
-  ethPolyAddress,
-  senderAddress,
-  receiverAddress,
-  network,
-  sleep
-} from '../config/config';
+import axios from 'axios';
+import { maticPolyAddress, ethPolyAddress,authKey, sleep } from '../config/config';
 
 const SwapPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +12,7 @@ const SwapPage: React.FC = () => {
     swapTo: '',
     amount: ''
   })
+  const [isSwapDisabled, setIsSwapEnabled] = useState(true)
 
   const handleSwapFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -50,23 +41,50 @@ const SwapPage: React.FC = () => {
     await sleep(1001);
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    console.log("handle submit")
+  async function getQuote(from: string, to: string, amount: string, authKey: string, network: number): Promise<string | null> {
+    try {
+
+        const options = {
+            method: 'GET',
+            url: `https://api.1inch.dev/swap/v5.2/${network}/quote?src=${from}&dst=${to}&amount=${amount}`,
+            headers: {
+                'Authorization': `Bearer ${authKey}`,
+            },
+        };
+        const result = await axios.request(options);
+        return result.data.toAmount
+    } catch (e) {
+        console.error(e)
+        return null
+    }
+}
+
+  const handleGetQuote = (e: React.FormEvent) => {
     e.preventDefault();
-    // Access the form data
-    console.log("called controller")
-    getQuoteController()
+    // axios.get(`http://127.0.0.1:7000/swap/quote?from=${formData.swapFrom}&to=${formData.swapTo}&amount=${formData.amount}`)
+    // .then(response => {
+    //   console.log(response.data);
+    //   setIsSwapEnabled(false)
+    // })
+    // .catch(error => {
+    //   console.error(error);
+    // });
+    getQuoteController();
   };
+
+  const handleSwap = () => {
+    console.log("handling swap")
+  }
 
   return (
     <Page
       title={'Swap'}
       description={'Swap users with our SDK or Hosted Flows'}
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleGetQuote}>
       <br />
       <label>
-        Swap From:
+        Swap From: 
         <input
           type="text"
           name="swapFrom"
@@ -76,7 +94,7 @@ const SwapPage: React.FC = () => {
       </label>
       <br></br>
       <label>
-        Swap To:
+        Swap To: 
         <input
           type="text"
           name="swapTo"
@@ -86,7 +104,7 @@ const SwapPage: React.FC = () => {
       </label>
       <br></br>
       <label>
-        Amount:
+        Amount: 
         <input
           type="text"
           name="amount"
@@ -97,6 +115,8 @@ const SwapPage: React.FC = () => {
       <br />
       <button type="submit">Get Quote</button>
     </form>
+    <br />
+    <button disabled={isSwapDisabled} onClick={handleSwap}>Swap Now!</button>
     </Page>
   );
 };
