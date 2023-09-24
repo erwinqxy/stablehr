@@ -1,22 +1,25 @@
-# Unlimit Crypto & Zero Dev Account Abstraction Wallets
+# StableHR 
+StableHR is a cross-border automated payroll system that allows efficient, low-cost, multi-currency transfers. 
 
-Check out [Unlimit Crypto's docs](https://docs.zerodev.app/) to learn more.
-Check out [Zero Dev's docs](https://docs.zerodev.app/) to learn more.
+## Table of Contents 
+[Description](#description)
+[How it works](#Howitworks)
+[Features](#features) 
+[Usage](#usage) 
 
+## Description 
+Current Payroll systems have inefficient multi-currency transfers due to unaligned real-time gross settlement hours in global banking and high costs in fees and poor exchange rates StableHR is a cross-border automated payroll system that utilizes blockchain technology and DeFi for organizations. 
 
-## Getting Started
+## How it works
+The company uses WalletConnect's Web3Modal v3 to connect the wallets of the employees. Each employee has a unique Polygon ID to maintain a Self-Sovereign Identity and preserve their privacy. The smart contract encompasses using Unlimit to onramp FIAT to USDC and then using 1Inch’s Swap API for the most efficient paths for a token swap to stablecoin. The stablecoin is transferred to the employee’s wallet and can offramp using Unlimit to FIAT.
 
-Head to the [ZeroDev dashboard](https://dashboard.zerodev.app/).  Here, create a project for a network of your choice.  Copy the project ID as you will be using it in the next steps.
+## Features
+1) Multi-currency transfers allow remote-first companies to pay employees around the world with competitive exchange rates. 
+2) Automated payroll system 
+3) Instant and secure transactions
+4) Lowest cost and eliminates high banking fees
+5) Remove price volatility using stablecoins
+6) Dashboard data analytics for company HR finances
+7) Automated messages and email notifications sent to employees 
 
-With your project set up, follow these simple steps to run the demo locally:
-
-```bash
-git clone https://github.com/Danimal01/zerodev-danimalDemo
-cd zerodev-danimalDemo
-yarn install
-export REACT_APP_ZERODEV_PROJECT_ID="your-project-id"
-vercel dev
-```
-
-Now the demo should be running on localhost!
-![image](https://github.com/Danimal01/zerodev-danimalDemo/assets/83383196/042ccc3d-5e0b-457e-a23f-086494198bd2)
+## Usage 
