@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import {
-  AppShell,
-  Navbar,
-  Header,
-  MediaQuery,
-  Burger,
-  useMantineTheme,
-  createStyles,
-  Group,
-  ScrollArea,
-} from "@mantine/core";
-import { ReactComponent as UnlimitLogo } from "./resources/assets/images/logo.svg";
-import { useMediaQuery } from "@mantine/hooks";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { Link, useLocation } from "react-router-dom";
-import { useAccount } from "wagmi";
-import { Login } from "./Login";
-import { ZeroDevWeb3Auth } from "@zerodev/web3auth";
+    AppShell,
+    Navbar,
+    Header,
+    MediaQuery,
+    Burger,
+    useMantineTheme,
+    createStyles,
+    Group,
+    ScrollArea,
+} from '@mantine/core';
+import { ReactComponent as UnlimitLogo } from './resources/assets/images/logo.svg';
+import { useMediaQuery } from '@mantine/hooks';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Link, useLocation } from 'react-router-dom';
+import { useAccount } from 'wagmi';
+import { Login } from './Login';
+import { ZeroDevWeb3Auth } from '@zerodev/web3auth';
+import InboxPage from './InboxPage-text';
+
 
 const useStyles = createStyles((theme, _params) => {
   return {
@@ -100,97 +102,89 @@ export function Dashboard({ children, links }: DashboardProps) {
     }
   }, [isConnected]);
 
-  if (!isConnected) {
-    return <Login />;
-  }
-  return (
-    <AppShell
-      styles={{
-        main: {
-          background:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-        },
-        root: {
-          fontFamily: "CustomFont",
-        },
-      }}
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
-      navbar={
-        <Navbar
-          p="md"
-          hiddenBreakpoint="sm"
-          hidden={!opened}
-          width={{ sm: 200, lg: 300 }}
-          style={{
-            fontFamily: "CustomFont",
-          }}
-        >
-          <Navbar.Section grow mt="md" component={ScrollArea}>
-            {matches ? (
-              <MediaQuery
-                largerThan={"sm"}
-                styles={{ paddingLeft: 20, paddingRight: 20 }}
-              >
-                <Group className={classes.header} position="apart">
-                  {/* Todo: Fix this logo */}
-                  {/* <img src='./assets/images/logo.png' alt="Logo" width="10%" height="10%"></img> */}
-                </Group>
-              </MediaQuery>
-            ) : null}
-            {links.map(item => (
-              <Link
-                className={cx(classes.link, {
-                  [classes.linkActive]: item.path === pathname,
-                })}
-                to={item.path}
-                key={item.label}
-                onClick={() => {
-                  setOpened(false);
-                }}
-              >
-                <img src={item?.icon ?? ""} alt={item.label} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </Navbar.Section>
-          {mdMatches && (
-            <Navbar.Section className={classes.footer}>
-              <ConnectButton />
+    if (!isConnected) {
+        return <Login />
+    }
+    return (
+      <AppShell
+        styles={{
+          main: {
+            background:
+              theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+          },
+        }}
+        navbarOffsetBreakpoint='sm'
+        asideOffsetBreakpoint='sm'
+        navbar={
+          <Navbar
+            p='md'
+            hiddenBreakpoint='sm'
+            hidden={!opened}
+            width={{ sm: 200, lg: 300 }}
+          >
+            <Navbar.Section grow mt='md' component={ScrollArea}>
+              {matches ? (
+                <MediaQuery
+                  largerThan={'sm'}
+                  styles={{ paddingLeft: 20, paddingRight: 20 }}
+                >
+                  <Group className={classes.header} position='apart'>
+                    {/* Todo: Fix this logo */}
+                    {/* <img src='./assets/images/logo.png' alt="Logo" width="10%" height="10%"></img> */}
+                  </Group>
+                </MediaQuery>
+              ) : null}
+              {links.map((item) => (
+                <Link
+                  className={cx(classes.link, {
+                    [classes.linkActive]: item.path === pathname,
+                  })}
+                  to={item.path}
+                  key={item.label}
+                  onClick={() => {
+                    setOpened(false);
+                  }}
+                >
+                  <span>{item.label}</span>
+                </Link>
+              ))}
             </Navbar.Section>
-          )}
-        </Navbar>
-      }
-      header={
-        matches ? undefined : (
-          <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-            <Header height={{ base: 50, md: 70 }} p="md">
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  height: "100%",
-                }}
-              >
-                <Burger
-                  opened={opened}
-                  onClick={() => setOpened(o => !o)}
-                  size="sm"
-                  color={theme.colors.gray[6]}
-                  mr="sm"
-                />
+            {mdMatches && (
+              <Navbar.Section className={classes.footer}>
+                <ConnectButton />
+              </Navbar.Section>
+            )}
+          </Navbar>
+        }
+        header={
+          matches ? undefined : (
+            <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
+              <Header height={{ base: 50, md: 70 }} p='md'>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                    height: '100%',
+                  }}
+                >
+                  <Burger
+                    opened={opened}
+                    onClick={() => setOpened((o) => !o)}
+                    size='sm'
+                    color={theme.colors.gray[6]}
+                    mr='sm'
+                  />
 
-                <UnlimitLogo height={30} width={116} />
-              </div>
-            </Header>
-          </MediaQuery>
-        )
-      }
-    >
-      {children}
-    </AppShell>
-  );
+                  <UnlimitLogo height={30} width={116} />
+                </div>
+              </Header>
+            </MediaQuery>
+          )
+        }
+      >
+        <InboxPage />
+        {children}
+      </AppShell>
+    );
 }

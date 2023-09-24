@@ -23,13 +23,8 @@ const links = [
   },
   { path: "/onramp", label: "Onramp", element: <Onramp />, icon: OnrampIcon },
   { path: "/swap", label: "Swap", element: <SwapPage />, icon: SwapIcon },
-  { path: "/inbox", label: "Inbox", element: <Onramp />, icon: InboxIcon },
-  {
-    path: "/messages",
-    label: "Messages",
-    element: <Onramp />,
-    icon: MessageIcon,
-  },
+  { path: "/inbox", label: "Inbox", element: <Onramp />, icon: InboxIcon }
+  // { path: '/Experiment', label: 'Experiment', element: <Experiment/> },
 ];
 
 const router = createBrowserRouter([
